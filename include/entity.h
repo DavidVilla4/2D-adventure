@@ -2,9 +2,13 @@
 #define __ENTITY_H__
 
 #include "gf2d_sprite.h"
+#include "gf2d_shape.h"
+#include "gfc_color.h"
 
 typedef struct Entity_S
 {
+	Color color;
+	Rect hitbox;
 	Uint8 _inuse;
 	Sprite *sprite;
 	Vector2D position; //where the ent is in 2d space

@@ -1,7 +1,7 @@
 #include "gfc_color.h"
 
 
-Color gf2d_color(float r, float g, float b, float a)
+Color gfc_color(float r, float g, float b, float a)
 {
 	Color color;
 	color.r = MIN(MAX(r, -1), 1);
@@ -12,7 +12,7 @@ Color gf2d_color(float r, float g, float b, float a)
 	return color;
 }
 
-Color gf2d_color8(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
+Color gfc_color8(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
 	Color color;
 	color.r = (float)r;
@@ -23,7 +23,7 @@ Color gf2d_color8(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 	return color;
 }
 
-Color gf2d_color_hsl(float h, float s, float l, float a)
+Color gfc_color_hsl(float h, float s, float l, float a)
 {
 	Color color;
 	color.r = h;
@@ -36,7 +36,7 @@ Color gf2d_color_hsl(float h, float s, float l, float a)
 	return color;
 }
 
-Color gf2d_color_hex(Uint32 hex)
+Color gfc_color_hex(Uint32 hex)
 {
 	Color color;
 	color.r = (float)hex;
@@ -44,7 +44,7 @@ Color gf2d_color_hex(Uint32 hex)
 	return color;
 }
 
-Color gf2d_color_to_float(Color color)
+Color gfc_color_to_float(Color color)
 {
 	Color nc;
 	float C, X, m;
@@ -113,7 +113,7 @@ Color gf2d_color_to_float(Color color)
 	return nc;
 }
 
-Color gf2d_color_to_int8(Color color)
+Color gfc_color_to_int8(Color color)
 {
 	Color nc;
 	switch (color.ct)
@@ -126,7 +126,7 @@ Color gf2d_color_to_int8(Color color)
 	case CT_RGBA8:
 		return color;
 	case CT_HSL:
-		color = gf2d_color_to_float(color);
+		color = gfc_color_to_float(color);
 	case CT_RGBAf:
 	default:
 		nc.r = color.r * 255;
@@ -139,7 +139,7 @@ Color gf2d_color_to_int8(Color color)
 	return nc;
 }
 
-Color gf2d_color_to_hsla(Color color)
+Color gfc_color_to_hsla(Color color)
 {
 	Color nc;
 	float D, Cmin, Cmax, H, S, L;
@@ -147,7 +147,7 @@ Color gf2d_color_to_hsla(Color color)
 	{
 		return color;
 	}
-	nc = gf2d_color_to_float(color);
+	nc = gfc_color_to_float(color);
 	Cmax = MAX(MAX(nc.r, nc.g), nc.b);
 	Cmin = MIN(MIN(nc.r, nc.g), nc.b);
 	D = Cmax - Cmin;
@@ -180,7 +180,7 @@ Color gf2d_color_to_hsla(Color color)
 	return nc;
 }
 
-Uint32 gf2d_color_to_hex(Color color)
+Uint32 gfc_color_to_hex(Color color)
 {
 	Uint32 hex;
 	Uint32 r, g, b, a;
@@ -189,7 +189,7 @@ Uint32 gf2d_color_to_hex(Color color)
 	{
 		return color.r;
 	}
-	nc = gf2d_color_to_int8(color);
+	nc = gfc_color_to_int8(color);
 	r = (Uint32)(nc.r) << 24;
 	g = (Uint32)(nc.g) << 16;
 	b = (Uint32)(nc.b) << 8;
@@ -198,7 +198,7 @@ Uint32 gf2d_color_to_hex(Color color)
 	return hex;
 }
 
-Color gf2d_color_from_vector4(Vector4D vector)
+Color gfc_color_from_vector4(Vector4D vector)
 {
 	Color color;
 	color.ct = CT_RGBA8;
@@ -212,7 +212,7 @@ Color gf2d_color_from_vector4(Vector4D vector)
 Vector4D gfc_color_to_vector4(Color color)
 {
 	Vector4D vector;
-	color = gf2d_color_to_int8(color);
+	color = gfc_color_to_int8(color);
 	vector.x = color.r;
 	vector.y = color.g;
 	vector.z = color.b;
@@ -220,13 +220,13 @@ Vector4D gfc_color_to_vector4(Color color)
 	return vector;
 }
 
-float gf2d_color_get_hue(Color color)
+float gfc_color_get_hue(Color color)
 {
-	color = gf2d_color_to_hsla(color);
+	color = gfc_color_to_hsla(color);
 	return color.r;
 }
 
-Color gf2d_color_from_sdl(SDL_Color color)
+Color gfc_color_from_sdl(SDL_Color color)
 {
 	Color nc;
 	float factor = 1.0 / 255.0;
@@ -238,10 +238,10 @@ Color gf2d_color_from_sdl(SDL_Color color)
 	return nc;
 }
 
-SDL_Color gf2d_color_to_sdl(Color color)
+SDL_Color gfc_color_to_sdl(Color color)
 {
 	SDL_Color nc;
-	color = gf2d_color_to_int8(color);
+	color = gfc_color_to_int8(color);
 	nc.r = (Uint8)color.r;
 	nc.g = (Uint8)color.g;
 	nc.b = (Uint8)color.b;
@@ -249,7 +249,7 @@ SDL_Color gf2d_color_to_sdl(Color color)
 	return nc;
 }
 
-void gf2d_color_set_hue(float hue, Color *color)
+void gfc_color_set_hue(float hue, Color *color)
 {
 	Color temp;
 	if (color->ct == CT_HSL)
@@ -257,7 +257,7 @@ void gf2d_color_set_hue(float hue, Color *color)
 		color->r = hue;
 		return;
 	}
-	temp = gf2d_color_to_hsla(*color);
+	temp = gfc_color_to_hsla(*color);
 	temp.r = hue;
 	switch (color->ct)
 	{
@@ -265,52 +265,52 @@ void gf2d_color_set_hue(float hue, Color *color)
 		// case already handled
 		break;
 	case CT_HEX:
-		color->r = gf2d_color_to_hex(temp);
+		color->r = gfc_color_to_hex(temp);
 		return;
 	case CT_RGBA8:
-		*color = gf2d_color_to_int8(temp);
+		*color = gfc_color_to_int8(temp);
 		return;
 	case CT_RGBAf:
-		*color = gf2d_color_to_float(temp);
+		*color = gfc_color_to_float(temp);
 	}
 }
 
-void gf2d_color_blend(Color *dst, Color a, Color b)
+void gfc_color_blend(Color *dst, Color a, Color b)
 {
 	float hex;
 	if (!dst)return;
 	switch (a.ct)
 	{
 	case CT_HSL:
-		b = gf2d_color_to_hsla(b);
-		*dst = gf2d_color_hsl(
+		b = gfc_color_to_hsla(b);
+		*dst = gfc_color_hsl(
 			(a.r + b.r)*0.5,
 			(a.g + b.g)*0.5,
 			(a.b + b.b)*0.5,
 			(a.a + b.a)*0.5);
 		return;
 	case CT_HEX:
-		a = gf2d_color_to_int8(a);
-		b = gf2d_color_to_int8(b);
-		*dst = gf2d_color8(
+		a = gfc_color_to_int8(a);
+		b = gfc_color_to_int8(b);
+		*dst = gfc_color8(
 			(a.r + b.r)*0.5,
 			(a.g + b.g)*0.5,
 			(a.b + b.b)*0.5,
 			(a.a + b.a)*0.5);
-		hex = gf2d_color_to_hex(*dst);
-		*dst = gf2d_color_hex(hex);
+		hex = gfc_color_to_hex(*dst);
+		*dst = gfc_color_hex(hex);
 		return;
 	case CT_RGBA8:
-		b = gf2d_color_to_int8(b);
-		*dst = gf2d_color8(
+		b = gfc_color_to_int8(b);
+		*dst = gfc_color8(
 			(a.r + b.r)*0.5,
 			(a.g + b.g)*0.5,
 			(a.b + b.b)*0.5,
 			(a.a + b.a)*0.5);
 		return;
 	case CT_RGBAf:
-		b = gf2d_color_to_float(b);
-		*dst = gf2d_color(
+		b = gfc_color_to_float(b);
+		*dst = gfc_color(
 			(a.r + b.r)*0.5,
 			(a.g + b.g)*0.5,
 			(a.b + b.b)*0.5,
@@ -319,42 +319,42 @@ void gf2d_color_blend(Color *dst, Color a, Color b)
 	}
 }
 
-void gf2d_color_add(Color *dst, Color a, Color b)
+void gfc_color_add(Color *dst, Color a, Color b)
 {
 	float hex;
 	if (!dst)return;
 	switch (a.ct)
 	{
 	case CT_HSL:
-		b = gf2d_color_to_hsla(b);
-		*dst = gf2d_color_hsl(
+		b = gfc_color_to_hsla(b);
+		*dst = gfc_color_hsl(
 			a.r + b.r,
 			a.g + b.g,
 			a.b + b.b,
 			a.a + b.a);
 		return;
 	case CT_HEX:
-		a = gf2d_color_to_int8(a);
-		b = gf2d_color_to_int8(b);
-		*dst = gf2d_color8(
+		a = gfc_color_to_int8(a);
+		b = gfc_color_to_int8(b);
+		*dst = gfc_color8(
 			a.r + b.r,
 			a.g + b.g,
 			a.b + b.b,
 			a.a + b.a);
-		hex = gf2d_color_to_hex(*dst);
-		*dst = gf2d_color_hex(hex);
+		hex = gfc_color_to_hex(*dst);
+		*dst = gfc_color_hex(hex);
 		return;
 	case CT_RGBA8:
-		b = gf2d_color_to_int8(b);
-		*dst = gf2d_color8(
+		b = gfc_color_to_int8(b);
+		*dst = gfc_color8(
 			a.r + b.r,
 			a.g + b.g,
 			a.b + b.b,
 			a.a + b.a);
 		return;
 	case CT_RGBAf:
-		b = gf2d_color_to_float(b);
-		*dst = gf2d_color(
+		b = gfc_color_to_float(b);
+		*dst = gfc_color(
 			a.r + b.r,
 			a.g + b.g,
 			a.b + b.b,
@@ -363,42 +363,42 @@ void gf2d_color_add(Color *dst, Color a, Color b)
 	}
 }
 
-void gf2d_color_multiply(Color *dst, Color a, Color b)
+void gfc_color_multiply(Color *dst, Color a, Color b)
 {
 	float hex;
 	if (!dst)return;
 	switch (a.ct)
 	{
 	case CT_HSL:
-		b = gf2d_color_to_hsla(b);
-		*dst = gf2d_color_hsl(
+		b = gfc_color_to_hsla(b);
+		*dst = gfc_color_hsl(
 			a.r*b.r,
 			a.g*b.g,
 			a.b*b.b,
 			a.a*b.a);
 		return;
 	case CT_HEX:
-		a = gf2d_color_to_int8(a);
-		b = gf2d_color_to_int8(b);
-		*dst = gf2d_color8(
+		a = gfc_color_to_int8(a);
+		b = gfc_color_to_int8(b);
+		*dst = gfc_color8(
 			a.r*b.r,
 			a.g*b.g,
 			a.b*b.b,
 			a.a*b.a);
-		hex = gf2d_color_to_hex(*dst);
-		*dst = gf2d_color_hex(hex);
+		hex = gfc_color_to_hex(*dst);
+		*dst = gfc_color_hex(hex);
 		return;
 	case CT_RGBA8:
-		b = gf2d_color_to_int8(b);
-		*dst = gf2d_color8(
+		b = gfc_color_to_int8(b);
+		*dst = gfc_color8(
 			a.r*b.r,
 			a.g*b.g,
 			a.b*b.b,
 			a.a*b.a);
 		return;
 	case CT_RGBAf:
-		b = gf2d_color_to_float(b);
-		*dst = gf2d_color(
+		b = gfc_color_to_float(b);
+		*dst = gfc_color(
 			a.r*b.r,
 			a.g*b.g,
 			a.b*b.b,
@@ -407,7 +407,7 @@ void gf2d_color_multiply(Color *dst, Color a, Color b)
 	}
 }
 
-Color gf2d_color_clamp(Color color)
+Color gfc_color_clamp(Color color)
 {
 	switch (color.ct)
 	{

@@ -64,7 +64,7 @@ int main(int argc, char * argv[])
 
     /*demo setup*/
     sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
-    mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
+    //mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
     /*main game loop*/
 	bug = newTestEnt();
 	player = playerEnt();
