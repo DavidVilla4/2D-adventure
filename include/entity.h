@@ -9,6 +9,7 @@ typedef struct Entity_S
 {
 	Color color;
 	Rect hitbox;
+	Shape box;
 	Uint8 _inuse;
 	Sprite *sprite;
 	Vector2D position; //where the ent is in 2d space

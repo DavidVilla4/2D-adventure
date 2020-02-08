@@ -2,6 +2,8 @@
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
+#include "gfc_color.h"
+#include "player.h"
 #include "entity.h"
 
 Entity *newTestEnt()
@@ -14,6 +16,7 @@ Entity *newTestEnt()
 		128,
 		128,
 		16);
+	
 	return self;
 
 }
@@ -24,13 +27,19 @@ Entity *playerEnt()
 	//player = new_player();
 	player = entity_new();
 	if (!player)return NULL;
+	
 	player->sprite = gf2d_sprite_load_all(
 		"images/space_bug.png",
 		128,
 		128,
 		16);
+	
+	
+	gf2d_shape_draw(player->box, gfc_color(10, 0, 0, 1), vector2d(0,0));
+	
 	return player;
 }
+
 
 int main(int argc, char * argv[])
 {
@@ -38,7 +47,6 @@ int main(int argc, char * argv[])
     int done = 0;
     const Uint8 * keys;
     Sprite *sprite;
-    
     int mx,my;
     float mf = 0;
     Sprite *mouse;
@@ -67,7 +75,8 @@ int main(int argc, char * argv[])
     //mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
     /*main game loop*/
 	bug = newTestEnt();
-	player = playerEnt();
+	player = new_player(vector2d(0, 0));
+	//player = playerEnt();
     while(!done)
     {
         SDL_PumpEvents();   // update SDL's internal event structures

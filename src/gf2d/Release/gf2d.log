@@ -1,24 +1,10 @@
-﻿Build started 2/5/2020 3:21:38 PM.
+﻿Build started 2/8/2020 2:16:30 PM.
      1>Project "C:\git\gameframework2d\src\gf2d\gf2d.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(364,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\libs\SDL2-2.0.10\lib\x86" /I"C:\libs\SDL2_ttf-2.0.15\lib\x86" /I"C:\libs\SDL2_mixer-2.0.4\lib\x86" /I"C:\libs\SDL2_image-2.0.5\lib\x86" /I"C:\libs\SDL2_image-2.0.5\include" /I"C:\libs\SDL2_mixer-2.0.4\include" /I"C:\libs\SDL2_ttf-2.0.15\include" /I"C:\libs\SDL2-2.0.10\include" /IC:\git\gameframework2d\gfc\simple_logger\include /IC:\git\gameframework2d\gfc\simple_json\include /IC:\git\gameframework2d\gfc\include /IC:\git\gameframework2d\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ..\entity.c ..\game.c ..\player.c
-         entity.c
-     1>..\entity.c(17): warning C4018: '<' : signed/unsigned mismatch
-     1>..\entity.c(33): warning C4018: '<' : signed/unsigned mismatch
-     1>..\entity.c(40): warning C4033: 'entity_new' must return a value
-     1>..\entity.c(63): warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(void)'
-     1>..\entity.c(78): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>..\entity.c(85): warning C4018: '<' : signed/unsigned mismatch
-     1>..\entity.c(115): warning C4018: '<' : signed/unsigned mismatch
-         game.c
-     1>..\game.c(77): warning C4305: '+=' : truncation from 'double' to 'float'
-     1>..\game.c(85): warning C4133: 'function' : incompatible types - from 'Entity *' to 'Sprite *'
-     1>..\game.c(90): warning C4244: 'function' : conversion from 'int' to 'float', possible loss of data
-     1>..\game.c(98): warning C4013: 'player_update' undefined; assuming extern returning int
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\libs\SDL2-2.0.10\lib\x86" /I"C:\libs\SDL2_ttf-2.0.15\lib\x86" /I"C:\libs\SDL2_mixer-2.0.4\lib\x86" /I"C:\libs\SDL2_image-2.0.5\lib\x86" /I"C:\libs\SDL2_image-2.0.5\include" /I"C:\libs\SDL2_mixer-2.0.4\include" /I"C:\libs\SDL2_ttf-2.0.15\include" /I"C:\libs\SDL2-2.0.10\include" /IC:\git\gameframework2d\gfc\simple_logger\include /IC:\git\gameframework2d\gfc\simple_json\include /IC:\git\gameframework2d\gfc\include /IC:\git\gameframework2d\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ..\player.c
          player.c
-     1>..\player.c(29): warning C4013: 'entity_draw' undefined; assuming extern returning int
-     1>..\player.c(30): warning C4020: 'gf2d_rect_draw' : too many actual parameters
+     1>..\player.c(38): warning C4013: 'entity_draw' undefined; assuming extern returning int
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\gf2d.exe" /INCREMENTAL:NO /NOLOGO SDL2.lib SDL2main.lib SDL2test.lib SDL2_ttf.lib SDL2_mixer.lib SDL2_image.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\..\gf2d.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\gf2d.lib" /MACHINE:X86 /SAFESEH Release\simple_json.obj
          Release\simple_json_array.obj
@@ -46,11 +32,11 @@
          Release\player.obj
          Generating code
      1>c:\git\gameframework2d\src\entity.c(41): warning C4715: 'entity_new' : not all control paths return a value
-     1>c:\git\gameframework2d\src\game.c(96): warning C4700: uninitialized local variable 'mouse' used
+     1>c:\git\gameframework2d\src\game.c(105): warning C4700: uninitialized local variable 'mouse' used
          Finished generating code
          gf2d.vcxproj -> C:\git\gameframework2d\src\gf2d\..\..\gf2d.exe
      1>Done Building Project "C:\git\gameframework2d\src\gf2d\gf2d.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.13
+Time Elapsed 00:00:01.45
