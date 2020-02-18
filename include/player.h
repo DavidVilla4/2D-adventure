@@ -6,6 +6,16 @@
 #include "simple_logger.h"
 
 
+typedef struct
+{
+	SDL_Rect pBox;
+	Entity player;
+}Player;
+
+Vector2D *player_set_position(Vector2D position);
+
+void player_think(Entity *self);
+
 Entity *new_player(Vector2D position);
 
 void player_update(Entity *self);

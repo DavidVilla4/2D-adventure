@@ -3,18 +3,24 @@
 
 #include "gf2d_sprite.h"
 #include "gf2d_shape.h"
+#include "gf2d_draw.h"
 #include "gfc_color.h"
 
 typedef struct Entity_S
 {
 	Color color;
-	Rect hitbox;
 	Shape box;
+	Shape sword;
+	Shape *testbox;
+	Rect hitbox;
+	SDL_Rect pbox;
 	Uint8 _inuse;
 	Sprite *sprite;
 	Vector2D position; //where the ent is in 2d space
 	float frame; //current frame for the sprite
 	float maxFrame;
+	float radius;
+	float velocity;
 	void(*think)(struct Entity_S *self);
 }Entity;
 /**
@@ -32,8 +38,11 @@ void entity_manager_init(Uint32 maxEnts);
 *@brief free a previously allocated memory
 *
 */
+
 void entity_free(Entity *self);
 void entity_update(Entity *self);
 void entity_update_all();
 void entity_draw_all();
+
+
 #endif

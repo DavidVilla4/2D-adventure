@@ -1,1 +1,0 @@
-patch achieves movements, adds a box without collision, and moves player intialization and movement to player.c

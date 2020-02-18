@@ -1,5 +1,7 @@
 #include "entity.h"
 #include "simple_logger.h"
+#include "level.h"
+#include "collision.h"
 typedef struct
 {
 	Uint32 maxEnts; //max entities supported by the system
@@ -92,7 +94,7 @@ void entity_update_all()
 
 void entity_draw(Entity *self)
 {
-	
+	SDL_Rect rect;
 	if (self == NULL)
 	{
 		slog("cannot draw sprite, null ent provided");
@@ -107,6 +109,7 @@ void entity_draw(Entity *self)
 		NULL,
 		NULL,
 		(Uint32) self->frame);
+	gf2d_draw_rect(rect, vector4d(255, 0, 255, 255));
 }
 
 void entity_draw_all(Entity *self)
@@ -118,5 +121,4 @@ void entity_draw_all(Entity *self)
 		entity_draw(&entity_manager.entityList[i]);
 	}
 }
-
 
