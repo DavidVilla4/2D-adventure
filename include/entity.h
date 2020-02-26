@@ -9,18 +9,21 @@
 typedef struct Entity_S
 {
 	Color color;
-	Shape box;
-	Shape sword;
+	Rect box;
+	Rect sword;
+	Rect rock;
+	Rect water;
 	Shape *testbox;
 	Rect hitbox;
 	SDL_Rect pbox;
 	Uint8 _inuse;
 	Sprite *sprite;
 	Vector2D position; //where the ent is in 2d space
+	Vector2D velocity;//how fast the ent is
 	float frame; //current frame for the sprite
 	float maxFrame;
 	float radius;
-	float velocity;
+	//float velocity;
 	void(*think)(struct Entity_S *self);
 }Entity;
 /**

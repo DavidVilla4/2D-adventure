@@ -56,7 +56,7 @@ Level *level_new(char *backgroundFile, SDL_Rect bounds)
 	level = (Level*)gfc_allocate_array(sizeof(Level), 1);
 	if (!level)return NULL;
 	level->background = gf2d_sprite_load_image(backgroundFile);
-	level->bounds = gf2d_shape_rect(00, 100, 50, 25);
+	level->bounds = gf2d_rect(100, 80, 1000, 600);
 	//gfc_rect_set(level->bounds, bounds.x, bounds.y, bounds.w, bounds.h);
 	THE_LEVEL = level;
 	return level;
@@ -72,9 +72,9 @@ void level_free(Level *level)
 void level_draw(Level *level)
 {
 	if (!level)return;
-	gf2d_sprite_draw_image(level->background, vector2d(0, 0));
+	//gf2d_sprite_draw_image(level->background, vector2d(0, 0));
 	
-	gf2d_shape_draw(level->bounds, gfc_color(10, 0, 0, 1), vector2d(0, 0));
+	gf2d_rect_draw(level->bounds, gfc_color(10, 0, 0, 1), vector2d(0, 0));
 	
 	//gf2d_draw_rect(level->bounds, vector4d(255, 0, 0, 255));
 }

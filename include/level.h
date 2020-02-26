@@ -9,7 +9,7 @@
 typedef struct
 {
 	Sprite *background;
-	Shape bounds;
+	Rect bounds;
 }Level;
 
 

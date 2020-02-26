@@ -2,17 +2,21 @@
 #include "entity.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
+#include "gfc_types.h"
 #include "gf2d_shape.h"
 #include "gfc_color.h"
 #include "collision.h"
 #include "player.h"
 #include "level.h"
+#include "interactables.h"
 
 
 
 Entity *self;
 Entity *combat;
 Level *level;
+Rect *hitbox;
+Entity rock;
 
 void player_think(Entity *self);
 
@@ -31,79 +35,124 @@ Entity *new_player(Vector2D position)
 		128,
 		128,
 		16);
-	//self->position = *player_set_position(0, 0);
-	///self->hitbox = gf2d_rect(position.x, position.y, 20, 35);
-	self->box = gf2d_shape_rect(1100, 100, 50, 25);
-	//self->hitbox = gf2d_rect(1100, 100, 50, 25);
-	//gf2d_draw_rect(self->pbox, vector4d(0, 0, 10, 1));
+
+	self->box = gf2d_rect(self->position.x, self->position.y, 50, 25);
+	vector2d(self->velocity.x, self->velocity.y);
 	
 	return self;
 
 }
 
 
-void player_update(Entity *self)
+void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 {
+	vector2d_add(self->position, self->position, self->velocity);
+
 	const Uint8 *keys;
 	keys = SDL_GetKeyboardState(NULL);
 	if (keys[SDL_SCANCODE_A])
 	{
-		self->position.x -= 3;
+		self->velocity = vector2d(-3, 0);
+		
 		if (keys[SDL_SCANCODE_P])
 		{
-			self->sword = gf2d_shape_rect(self->position.x, self->position.y, 60, 20);
-			gf2d_shape_draw(self->sword, gfc_color(0, 0, 10, 1), vector2d(-25, 50));
-			self->sword.s.c.x = self->position.x + 5000;
-			self->sword.s.c.y = self->position.y + 50;
+			//self->position.x += 3;
+			self->velocity = vector2d(0, 0);
+			self->sword = gf2d_rect(self->position.x-30, self->position.y+50, 60, 20);
+			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));	
+			
 		}
 	}
-	if (keys[SDL_SCANCODE_D])
+	else if (keys[SDL_SCANCODE_D])
 	{
-		self->position.x += 3;
+		self->velocity = vector2d(3,0);
+		if (collide_rect(water->water, self->box))//water code
+		{
+			slog("slide");
+			self->velocity = vector2d(0, 3);
+		}
+		
 		if (keys[SDL_SCANCODE_P])
 		{
-			self->sword = gf2d_shape_rect(self->position.x, self->position.y, 60, 20);
-			gf2d_shape_draw(self->sword, gfc_color(0, 0, 10, 1), vector2d(80, 50));
-			self->sword.s.c.x = self->position.x + 5000;
-			self->sword.s.c.y = self->position.y + 50;
+			self->velocity = vector2d(0, 0);
+			self->sword = gf2d_rect(self->position.x+80, self->position.y+50, 60, 20);
+			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));
 		}
 	}
-	if (keys[SDL_SCANCODE_W])
+	else if (keys[SDL_SCANCODE_W])
 	{
-		self->position.y -= 3;
+		self->velocity = vector2d(0, -3);
+		
 		if (keys[SDL_SCANCODE_P])
 		{
-			self->position.y += 3;
-			self->sword = gf2d_shape_rect(self->position.x, self->position.y, 20, 60);
-			gf2d_shape_draw(self->sword, gfc_color(0, 0, 10, 1), vector2d(50, -10));
-			self->sword.s.c.x = self->position.x + 5000;
-			self->sword.s.c.y = self->position.y + 50;
+			self->velocity = vector2d(0, 0);
+			self->sword = gf2d_rect(self->position.x+45, self->position.y-10, 20, 60);
+			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));
 		}
 		
 		
 	}
-	if (keys[SDL_SCANCODE_S])
+	
+
+
+	else if (keys[SDL_SCANCODE_S])
 	{
-		self->position.y += 3;
+		self->velocity=vector2d(0,3);
+		//self->position.y += 3;
 		if (keys[SDL_SCANCODE_P])
 		{
-			self->position.y -= 3;
-			self->sword = gf2d_shape_rect(self->position.x, self->position.y, 20, 60);
-			gf2d_shape_draw(self->sword, gfc_color(0, 0, 10, 1), vector2d(50, 75));
-			self->sword.s.c.x = self->position.x + 5000;
-			self->sword.s.c.y = self->position.y + 50;
+			self->velocity = vector2d(0, 0);
+			self->sword = gf2d_rect(self->position.x+45, self->position.y+75, 20, 60);
+			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1), vector2d(50,75));
+			
 		}
 	}
+	else
+	{
+		self->velocity = vector2d(0, 0);
+	}
+
+
+	if (collide_predict(rock->rock, self->box))
+	{
+		if (keys[SDL_SCANCODE_W])
+		{
+			self->velocity = vector2d(0, .03);
+			rock->rock.y -= 20;
+		}
+		if (keys[SDL_SCANCODE_S])
+		{
+
+			self->velocity = vector2d(0, -0.03);
+		}
+	}
+	if (collide_rect(rock->rock, self->box))
+	{
+		if (keys[SDL_SCANCODE_D])
+		{
+			self->velocity = vector2d(-0.03-5, 0);
+		}
+		if (keys[SDL_SCANCODE_A])
+		{
+
+			self->velocity = vector2d(0.03+5, 0);
+		}
+	}
+	
+	if (collide_predict(water->water, self->box))//water code
+	{
+		self->velocity=vector2d(0,3);
+	}
+	
 	entity_update(self);
 	
-	gf2d_shape_draw(self->box, gfc_color(0, 10, 0, 1), vector2d(0,0));
-	//gf2d_shape_draw(self->*testbox, gfc_color(10, 0, 0, 1), vector2d(0, 0));
-	//gf2d_rect_draw(self->hitbox, gfc_color(0, 0, 10, 1));
-	//gf2d_draw_circle(self->position, self->radius, vector4d(255, 0, 255, 255));
-	self->box.s.c.x = self->position.x + 30;
-	self->box.s.c.y = self->position.y + 50;
+
+	gf2d_rect_draw(self->box, gfc_color(0, 10, 0, 1), vector2d(0, 0));
+	self->box.x = self->position.x + 30;
+	self->box.y = self->position.y + 50;
 	self->think = player_think;
 	
+
 
 }
 
@@ -115,19 +164,11 @@ void player_think(Entity *self, Level *level)
 		slog("no player given");
 		return NULL;
 	}
-	/*
-	//slog("");
-	if (collide_rect(level->bounds, self->box))
-	{
-		slog("collided");
-		return;
-	}
 	
-	if (gf2d_shape_overlap(self->box, level->bounds))
-	{
-		slog("collided");
-		return;
-	}*/
+	
+	
+	
+	
 }
 
 

@@ -31,7 +31,8 @@ int main(int argc, char * argv[])
 	Level *level;
 	Entity *bug;
 	Entity *player;
-	Entity *self;
+	Entity *rock;
+	Entity *water;
 
 	/*program initializtion*/
 	init_logger("gf2d.log");
@@ -56,7 +57,7 @@ int main(int argc, char * argv[])
 	/*main game loop*/
 	//bug = newTestEnt();
 	player = new_player(vector2d(0.0, 0.0));
-	self = new_rock(vector2d(0,0));
+	rock = new_rock(vector2d(0,0));
 	
 	vector2d_set(player->position, 100, 100);
 	//vector2d_set(self->position, 50, 100);
@@ -75,10 +76,11 @@ int main(int argc, char * argv[])
 		// all drawing should happen betweem clear_screen and next_frame
 		//backgrounds drawn first
 		//gf2d_sprite_draw_image(sprite, vector2d(0, 0));
-		gf2d_shape_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
+		//gf2d_shape_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
+		gf2d_rect_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
 		//vector2d_set(self->position, 50, 50);
 		level_draw(level);
-		rock_draw(self);
+		rock_draw(rock);
 		entity_draw_all();
 		//UI elements last
 		gf2d_sprite_draw(
@@ -91,9 +93,9 @@ int main(int argc, char * argv[])
 			&mouseColor,
 			(int)mf);
 		entity_update(bug);
-		player_update(player);
-		rock_update(self);
-		player_think(player, level);
+		player_update(player, level, rock, water);
+		rock_update(rock);
+		//player_think(player, level);
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
 		if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
 		//slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());

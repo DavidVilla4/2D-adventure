@@ -78,6 +78,7 @@ void entity_update(Entity *self)
 {
 	if (!self)return;
 	self->frame = self->frame + 0.1;
+	vector2d_add(self->position, self->position, self->velocity);
 	if (self->frame > 10)self->frame = 0;
 }
 

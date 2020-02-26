@@ -4,11 +4,12 @@
 #include "entity.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
+#include "level.h"
 
 
 typedef struct
 {
-	SDL_Rect pBox;
+	Vector2D velocity;
 	Entity player;
 }Player;
 
@@ -18,7 +19,7 @@ void player_think(Entity *self);
 
 Entity *new_player(Vector2D position);
 
-void player_update(Entity *self);
+void player_update(Entity *self, Level *level, Entity *rock, Entity *water);
 
 
 #endif

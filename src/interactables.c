@@ -13,22 +13,20 @@ Entity *new_rock(Vector2D position)
 		slog("no ent created");
 		return NULL;
 	}
-	self->sprite = gf2d_sprite_load_all(
-		"images/space_bug.png",
-		128,
-		128,
-		16);
 	
-	self->box = gf2d_shape_rect(10, 10, 50, 25);
+	
+	self->rock = gf2d_rect(300, 500, 50, 25);
+	self->water = gf2d_rect(200, 300, 100, 50);
 	return self;
 }
 
 void rock_update(Entity *self)
 {
-	gf2d_shape_draw(self->box, gfc_color(10, 0, 0, 1), vector2d(0, 0));
+	gf2d_rect_draw(self->rock, gfc_color(10, 0, 0, 1), vector2d(0, 0));
+	gf2d_rect_draw(self->water, gfc_color(0, 0, 10, 1), vector2d(0, 0));
 	entity_update(self);
-	self->box.s.c.x = self->position.x + 30;
-	self->box.s.c.y = self->position.y + 50;
+	self->box.x = self->position.x + 50;
+	self->box.y = self->position.y + 50;
 
 }
 
@@ -44,7 +42,7 @@ void rock_draw(Entity *self)
 	if (!self)return;
 	//gf2d_sprite_draw_image(level->background, vector2d(0, 0));
 
-	gf2d_shape_draw(self->box, gfc_color(10, 0, 0, 1), vector2d(0, 0));
+	gf2d_rect_draw(self->rock, gfc_color(10, 0, 0, 1), vector2d(0, 0));
 
 	//gf2d_draw_rect(level->bounds, vector4d(255, 0, 0, 255));
 }

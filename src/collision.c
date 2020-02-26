@@ -12,16 +12,51 @@ int collide_circle(Vector2D p1, float r1, Vector2D p2, float r2)
 }
 
 
-int collide_rect(Shape *r1, Shape *r2)
+int collide_rect(Rect r1, Rect r2)
 {
-	Shape a= *r1;
-	Shape b = *r2;
-	if (((a.x + a.w) < b.x) ||
-		((b.x + b.w) < a.x) ||
-		((a.y + a.h) < b.y) ||
-		((b.y + b.h) < a.y))
+	//Rect a= *r1;
+	//Rect b = *r2;
+	if (((r1.x + r1.w) < r2.x) ||
+		((r2.x + r2.w) < r1.x) ||
+		((r1.y + r1.h) < r2.y) ||
+		((r2.y + r2.h) < r1.y))
 	{
 		
+		return 0;
+	}
+	return 1;
+}
+
+int collide_predict(Rect r1, Rect r2)
+{
+	if (((r1.x + r1.w)+8 < r2.x) ||
+		((r2.x + r2.w)+8 < r1.x) ||
+		((r1.y + r1.h)+8 < r2.y) ||
+		((r2.y + r2.h)+8 < r1.y))
+	{
+
+		return 0;
+	}
+	return 1;
+}
+
+int collide_level_rect(Rect r1, Rect r2)
+{
+	if (((r1.x + r1.w) > r2.x) ||
+		((r2.x + r2.w) > r1.x) ||
+		((r1.y + r1.h) > r2.y) ||
+		((r2.y + r2.h) > r1.y))
+	{
+		return 0;
+	}
+	return 1;
+}
+int collide_top_bot(Rect r1, Rect r2)
+{
+	if (((r1.x + r1.w) > r2.x) ||
+		((r2.x + r2.w) > r1.x) &&
+		((r1.y + r1.h) > r2.y))
+	{
 		return 0;
 	}
 	return 1;
