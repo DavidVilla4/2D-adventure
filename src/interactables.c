@@ -16,15 +16,23 @@ Entity *new_rock(Vector2D position)
 	
 	
 	self->rock = gf2d_rect(300, 500, 50, 25);
-	self->water = gf2d_rect(200, 300, 100, 50);
+	self->water = gf2d_rect(200, 50, 100, 150);
+	self->ladder = gf2d_rect(200, 300, 50, 100);
+	self->lava = gf2d_rect(150, 400, 100, 100);
+
 	return self;
 }
 
 void rock_update(Entity *self)
 {
+	//Entity *water;
+	//gf2d_rect_draw(self->rock, gfc_color(10, 0, 0, 1), vector2d(0, 0));
+	//gf2d_rect_draw(water->water, gfc_color(0, 0, 10, 1), vector2d(0, 0));
+	entity_update(self);
 	gf2d_rect_draw(self->rock, gfc_color(10, 0, 0, 1), vector2d(0, 0));
 	gf2d_rect_draw(self->water, gfc_color(0, 0, 10, 1), vector2d(0, 0));
-	entity_update(self);
+	gf2d_rect_draw(self->ladder, gfc_color(0, 20, 0, 1), vector2d(0, 0));
+	gf2d_rect_draw(self->lava, gfc_color(20, 0, 0, 1), vector2d(0, 0));
 	self->box.x = self->position.x + 50;
 	self->box.y = self->position.y + 50;
 
@@ -41,8 +49,9 @@ void rock_draw(Entity *self)
 {
 	if (!self)return;
 	//gf2d_sprite_draw_image(level->background, vector2d(0, 0));
-
 	gf2d_rect_draw(self->rock, gfc_color(10, 0, 0, 1), vector2d(0, 0));
-
+	gf2d_rect_draw(self->water, gfc_color(0, 0, 10, 1), vector2d(0, 0));
+	gf2d_rect_draw(self->ladder, gfc_color(0, 20, 0, 1), vector2d(0, 0));
+	gf2d_rect_draw(self->ladder, gfc_color(20, 0, 0, 1), vector2d(0, 0));
 	//gf2d_draw_rect(level->bounds, vector4d(255, 0, 0, 255));
 }

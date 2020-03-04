@@ -11,6 +11,7 @@
 #include "entity.h"
 #include "level.h"
 #include "interactables.h"
+#include "patroller.h"
 
 
 
@@ -33,6 +34,7 @@ int main(int argc, char * argv[])
 	Entity *player;
 	Entity *rock;
 	Entity *water;
+	Entity *patroller;
 
 	/*program initializtion*/
 	init_logger("gf2d.log");
@@ -58,6 +60,7 @@ int main(int argc, char * argv[])
 	//bug = newTestEnt();
 	player = new_player(vector2d(0.0, 0.0));
 	rock = new_rock(vector2d(0,0));
+	patroller = patroller_new(vector2d(0, 0));
 	
 	vector2d_set(player->position, 100, 100);
 	//vector2d_set(self->position, 50, 100);
@@ -81,6 +84,8 @@ int main(int argc, char * argv[])
 		//vector2d_set(self->position, 50, 50);
 		level_draw(level);
 		rock_draw(rock);
+		rock_draw(water);
+		//patroller_draw(patroller);
 		entity_draw_all();
 		//UI elements last
 		gf2d_sprite_draw(
@@ -95,6 +100,8 @@ int main(int argc, char * argv[])
 		entity_update(bug);
 		player_update(player, level, rock, water);
 		rock_update(rock);
+		rock_update(water);
+		patroller_update(patroller);
 		//player_think(player, level);
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
 		if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition

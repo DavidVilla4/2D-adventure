@@ -13,9 +13,12 @@ typedef struct Entity_S
 	Rect sword;
 	Rect rock;
 	Rect water;
+	Rect ladder;
+	Rect bounce;
+	Rect lava;
+	Rect enemy;
 	Shape *testbox;
 	Rect hitbox;
-	SDL_Rect pbox;
 	Uint8 _inuse;
 	Sprite *sprite;
 	Vector2D position; //where the ent is in 2d space

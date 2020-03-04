@@ -17,7 +17,7 @@ Entity *combat;
 Level *level;
 Rect *hitbox;
 Entity rock;
-
+int player_health = 10;
 void player_think(Entity *self);
 
 Entity *new_player(Vector2D position)
@@ -62,6 +62,10 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));	
 			
 		}
+		if (keys[SDL_SCANCODE_L])
+		{
+			//put projectile code here
+		}
 	}
 	else if (keys[SDL_SCANCODE_D])
 	{
@@ -74,6 +78,7 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 		
 		if (keys[SDL_SCANCODE_P])
 		{
+			
 			self->velocity = vector2d(0, 0);
 			self->sword = gf2d_rect(self->position.x+80, self->position.y+50, 60, 20);
 			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));
@@ -118,11 +123,14 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 		if (keys[SDL_SCANCODE_W])
 		{
 			self->velocity = vector2d(0, .03);
-			rock->rock.y -= 20;
+			if (self->box.y > rock->rock.y)
+			{
+				rock->rock.y -= 20;
+			}
+			
 		}
 		if (keys[SDL_SCANCODE_S])
 		{
-
 			self->velocity = vector2d(0, -0.03);
 		}
 	}
@@ -142,6 +150,21 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 	if (collide_predict(water->water, self->box))//water code
 	{
 		self->velocity=vector2d(0,3);
+	}
+	if (collide_predict(water->ladder, self->box))
+	{
+		
+		if (keys[SDL_SCANCODE_L])
+		{
+			water->ladder.x = self->box.x;
+			water->ladder.y = self->box.y;
+
+		}
+	}
+	if (collide_predict(water->lava, self->box))
+	{
+		player_health -= 1;
+		slog("health %d", player_health);
 	}
 	
 	entity_update(self);
