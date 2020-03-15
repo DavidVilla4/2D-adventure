@@ -28,6 +28,7 @@ typedef struct Entity_S
 	float radius;
 	//float velocity;
 	void(*think)(struct Entity_S *self);
+	void(*update)(struct Entity_S *self);
 }Entity;
 /**
 *@brief get a pointer to a new entity

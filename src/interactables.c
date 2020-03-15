@@ -33,8 +33,8 @@ void rock_update(Entity *self)
 	gf2d_rect_draw(self->water, gfc_color(0, 0, 10, 1), vector2d(0, 0));
 	gf2d_rect_draw(self->ladder, gfc_color(0, 20, 0, 1), vector2d(0, 0));
 	gf2d_rect_draw(self->lava, gfc_color(20, 0, 0, 1), vector2d(0, 0));
-	self->box.x = self->position.x + 50;
-	self->box.y = self->position.y + 50;
+	//self->box.x = self->position.x + 50;
+	//self->box.y = self->position.y + 50;
 
 }
 

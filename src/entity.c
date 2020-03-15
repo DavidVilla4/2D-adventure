@@ -96,6 +96,7 @@ void entity_update_all()
 void entity_draw(Entity *self)
 {
 	SDL_Rect rect;
+	//Rect box;
 	if (self == NULL)
 	{
 		slog("cannot draw sprite, null ent provided");
@@ -111,6 +112,7 @@ void entity_draw(Entity *self)
 		NULL,
 		(Uint32) self->frame);
 	gf2d_draw_rect(rect, vector4d(255, 0, 255, 255));
+	//gf2d_rect_draw(box, gfc_color(0, 10, 10, 1));
 }
 
 void entity_draw_all(Entity *self)

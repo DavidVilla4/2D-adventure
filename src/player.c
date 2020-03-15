@@ -9,6 +9,8 @@
 #include "player.h"
 #include "level.h"
 #include "interactables.h"
+#include "projectile.h"
+
 
 
 
@@ -37,7 +39,7 @@ Entity *new_player(Vector2D position)
 		16);
 
 	self->box = gf2d_rect(self->position.x, self->position.y, 50, 25);
-	vector2d(self->velocity.x, self->velocity.y);
+	vector2d(self->velocity.x, self->velocity.y); 
 	
 	return self;
 
@@ -50,9 +52,17 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 
 	const Uint8 *keys;
 	keys = SDL_GetKeyboardState(NULL);
+	if (keys[SDL_SCANCODE_O])
+	{
+		//put projectile code here
+		//self->velocity = vector2d(-1, 0);
+		//self->sword = gf2d_rect(self->position.x - 30, self->position.y + 50, 20, 20);
+		//gf2d_rect_draw(self->sword, gfc_color(0, 1, 1, 1));
+		projectile_new(vector2d(self->position.x, self->position.y),self);
+	}
 	if (keys[SDL_SCANCODE_A])
 	{
-		self->velocity = vector2d(-3, 0);
+		self->velocity = vector2d(-.3, 0);
 		
 		if (keys[SDL_SCANCODE_P])
 		{
@@ -62,17 +72,14 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));	
 			
 		}
-		if (keys[SDL_SCANCODE_L])
-		{
-			//put projectile code here
-		}
+		
 	}
 	else if (keys[SDL_SCANCODE_D])
 	{
-		self->velocity = vector2d(3,0);
-		if (collide_rect(water->water, self->box))//water code
+		self->velocity = vector2d(.3,0);
+		if (collide_rect(rock->water, self->box))//water code
 		{
-			slog("slide");
+			//slog("slide");
 			self->velocity = vector2d(0, 3);
 		}
 		
@@ -86,7 +93,7 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 	}
 	else if (keys[SDL_SCANCODE_W])
 	{
-		self->velocity = vector2d(0, -3);
+		self->velocity = vector2d(0, -.3);
 		
 		if (keys[SDL_SCANCODE_P])
 		{
@@ -102,7 +109,7 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 
 	else if (keys[SDL_SCANCODE_S])
 	{
-		self->velocity=vector2d(0,3);
+		self->velocity=vector2d(0,.3);
 		//self->position.y += 3;
 		if (keys[SDL_SCANCODE_P])
 		{
@@ -147,21 +154,21 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 		}
 	}
 	
-	if (collide_predict(water->water, self->box))//water code
+	if (collide_predict(rock->water, self->box))//water code
 	{
 		self->velocity=vector2d(0,3);
 	}
-	if (collide_predict(water->ladder, self->box))
+	if (collide_predict(rock->ladder, self->box))
 	{
 		
 		if (keys[SDL_SCANCODE_L])
 		{
-			water->ladder.x = self->box.x;
-			water->ladder.y = self->box.y;
+			rock->ladder.x = self->box.x;
+			rock->ladder.y = self->box.y;
 
 		}
 	}
-	if (collide_predict(water->lava, self->box))
+	if (collide_predict(rock->lava, self->box))
 	{
 		player_health -= 1;
 		slog("health %d", player_health);

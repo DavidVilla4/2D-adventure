@@ -13,6 +13,8 @@
 #include "interactables.h"
 #include "patroller.h"
 
+#include "hunter.h"
+
 
 
 int main(int argc, char * argv[])
@@ -35,6 +37,9 @@ int main(int argc, char * argv[])
 	Entity *rock;
 	Entity *water;
 	Entity *patroller;
+	Entity *shot;
+	Entity *hunter;
+	Entity *lava;
 
 	/*program initializtion*/
 	init_logger("gf2d.log");
@@ -61,6 +66,8 @@ int main(int argc, char * argv[])
 	player = new_player(vector2d(0.0, 0.0));
 	rock = new_rock(vector2d(0,0));
 	patroller = patroller_new(vector2d(0, 0));
+	hunter = hunter_new(vector2d(0, 0));
+	//shot = projectile_new(vector2d(player->position.x, player->position.y), player);
 	
 	vector2d_set(player->position, 100, 100);
 	//vector2d_set(self->position, 50, 100);
@@ -85,7 +92,10 @@ int main(int argc, char * argv[])
 		level_draw(level);
 		rock_draw(rock);
 		rock_draw(water);
-		//patroller_draw(patroller);
+		rock_draw(lava);
+		//projectile_draw(shot);
+		patroller_draw(patroller);
+		hunter_draw(hunter);
 		entity_draw_all();
 		//UI elements last
 		gf2d_sprite_draw(
@@ -98,10 +108,15 @@ int main(int argc, char * argv[])
 			&mouseColor,
 			(int)mf);
 		entity_update(bug);
-		player_update(player, level, rock, water);
+		player_update(player, level, rock, water, lava);
 		rock_update(rock);
 		rock_update(water);
+		rock_update(lava);
 		patroller_update(patroller);
+		//projectile_update(shot, player);
+		hunter_update(hunter, player);
+		//entity_update_all();
+		
 		//player_think(player, level);
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
 		if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition

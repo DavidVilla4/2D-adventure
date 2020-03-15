@@ -12,8 +12,6 @@ Entity *patroller_new(Vector2D position)
 		slog("no ent created");
 		return NULL;
 	}
-	float posX = 100;
-	float posY = 100;
 	self->enemy=gf2d_rect(100, 100, 50, 50);
 	return self;
 }
@@ -22,7 +20,7 @@ void patroller_update(Entity *self)
 {
 	int distance;
 	timer += 0.1f;
-	gf2d_rect_draw(self->enemy, gfc_color(0, 0, 10, 1), vector2d(0, 0));
+	gf2d_rect_draw(self->enemy, gfc_color(0, 0, 1, 1));
 	if (timer < 25.0f)
 	{
 		self->enemy.x += 1;
@@ -58,7 +56,7 @@ void patroller_update(Entity *self)
 		self->enemy.x -= 10;
 	}
 	*/
-	entity_update(self);
+	//entity_update(self);
 
 }
 
@@ -72,5 +70,5 @@ void patroller_free(Entity *self)
 void patroller_draw(Entity *self)
 {
 	if (!self)return;
-	gf2d_rect_draw(self->rock, gfc_color(10, 0, 0, 1), vector2d(0, 0));
+	//gf2d_rect_draw(self->enemy, gfc_color(0, 10, 0, 1), vector2d(0, 0));
 }

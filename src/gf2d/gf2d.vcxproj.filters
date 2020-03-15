@@ -99,6 +99,9 @@
     <ClCompile Include="..\patroller.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\hunter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\projectile.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -188,7 +191,10 @@
     <ClInclude Include="..\..\include\patroller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\projectile.h">
+    <ClInclude Include="..\..\include\hunter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

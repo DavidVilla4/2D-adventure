@@ -109,6 +109,7 @@
     <ClCompile Include="..\gf2d_graphics.c" />
     <ClCompile Include="..\gf2d_sprite.c" />
     <ClCompile Include="..\gf2d_shape.c" />
+    <ClCompile Include="..\hunter.c" />
     <ClCompile Include="..\interactables.c" />
     <ClCompile Include="..\level.c" />
     <ClCompile Include="..\patroller.c" />
@@ -140,11 +141,12 @@
     <ClInclude Include="..\..\include\gf2d_graphics.h" />
     <ClInclude Include="..\..\include\gf2d_shape.h" />
     <ClInclude Include="..\..\include\gf2d_sprite.h" />
+    <ClInclude Include="..\..\include\hunter.h" />
     <ClInclude Include="..\..\include\interactables.h" />
     <ClInclude Include="..\..\include\level.h" />
     <ClInclude Include="..\..\include\patroller.h" />
     <ClInclude Include="..\..\include\player.h" />
-    <ClInclude Include="..\..\include\projectile.h" />
+    <ClInclude Include="projectile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

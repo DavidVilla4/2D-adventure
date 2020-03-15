@@ -10,7 +10,7 @@
 typedef struct
 {
 	Vector2D velocity;
-	Entity player;
+	Bool left;
 }Player;
 
 Vector2D *player_set_position(Vector2D position);

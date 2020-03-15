@@ -1,0 +1,2 @@
+projectile: make a different "new" and "update" depending on which direction is happening. 
+that way, individual projectiles are called
