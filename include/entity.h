@@ -16,6 +16,7 @@ typedef struct Entity_S
 	Rect ladder;
 	Rect bounce;
 	Rect lava;
+	Rect health1;
 	Rect enemy;
 	Shape *testbox;
 	Rect hitbox;
@@ -23,6 +24,7 @@ typedef struct Entity_S
 	Sprite *sprite;
 	Vector2D position; //where the ent is in 2d space
 	Vector2D velocity;//how fast the ent is
+	Bool dead;
 	float frame; //current frame for the sprite
 	float maxFrame;
 	float radius;

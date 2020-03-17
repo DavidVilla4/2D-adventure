@@ -1,6 +1,3 @@
-
-
-
 #include <SDL.h>
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
@@ -12,8 +9,9 @@
 #include "level.h"
 #include "interactables.h"
 #include "patroller.h"
-
+#include "projectile.h"
 #include "hunter.h"
+#include "health_bar.h"
 
 
 
@@ -60,6 +58,7 @@ int main(int argc, char * argv[])
 	/*demo setup*/
 	level = level_new("images/backgrounds/bg_flat.png", bounds);
 	//bounds = gf2d_shape_rect(50, 50, 1100, 600);
+	//sprite = gf2d_sprite_load_image("images/font.png", 16, 16, 16);
 	//mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
 	/*main game loop*/
 	//bug = newTestEnt();
@@ -67,6 +66,7 @@ int main(int argc, char * argv[])
 	rock = new_rock(vector2d(0,0));
 	patroller = patroller_new(vector2d(0, 0));
 	hunter = hunter_new(vector2d(0, 0));
+	lava = health_new(vector2d(0, 0));
 	//shot = projectile_new(vector2d(player->position.x, player->position.y), player);
 	
 	vector2d_set(player->position, 100, 100);
@@ -85,17 +85,17 @@ int main(int argc, char * argv[])
 		gf2d_graphics_clear_screen();// clears drawing buffers
 		// all drawing should happen betweem clear_screen and next_frame
 		//backgrounds drawn first
-		//gf2d_sprite_draw_image(sprite, vector2d(0, 0));
+		gf2d_sprite_draw_image(sprite, vector2d(0, 0));
 		//gf2d_shape_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
 		gf2d_rect_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
 		//vector2d_set(self->position, 50, 50);
 		level_draw(level);
-		rock_draw(rock);
+		//rock_draw(rock);
 		rock_draw(water);
 		rock_draw(lava);
-		//projectile_draw(shot);
+		projectile_draw(shot);
 		patroller_draw(patroller);
-		hunter_draw(hunter);
+		//hunter_draw(hunter);
 		entity_draw_all();
 		//UI elements last
 		gf2d_sprite_draw(
@@ -115,7 +115,8 @@ int main(int argc, char * argv[])
 		patroller_update(patroller);
 		//projectile_update(shot, player);
 		hunter_update(hunter, player);
-		//entity_update_all();
+		health_update(lava, player);
+		entity_update_all();
 		
 		//player_think(player, level);
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
@@ -123,6 +124,9 @@ int main(int argc, char * argv[])
 		//slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());
 	}
 	level_free(level);
+	entity_free(player);
+	entity_free(shot);
+	player_free(player);
 	slog("---==== END ====---");
 	return 0;
 }

@@ -10,6 +10,7 @@
 #include "level.h"
 #include "interactables.h"
 #include "projectile.h"
+#include "health_bar.h"
 
 
 
@@ -49,7 +50,7 @@ Entity *new_player(Vector2D position)
 void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 {
 	vector2d_add(self->position, self->position, self->velocity);
-
+	gf2d_rect_draw(self->box, gfc_color(0, 10, 0, 1), vector2d(0, 0));
 	const Uint8 *keys;
 	keys = SDL_GetKeyboardState(NULL);
 	if (keys[SDL_SCANCODE_O])
@@ -58,7 +59,8 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 		//self->velocity = vector2d(-1, 0);
 		//self->sword = gf2d_rect(self->position.x - 30, self->position.y + 50, 20, 20);
 		//gf2d_rect_draw(self->sword, gfc_color(0, 1, 1, 1));
-		projectile_new(vector2d(self->position.x, self->position.y),self);
+		projectile_new(vector2d(0,0), self);
+		
 	}
 	if (keys[SDL_SCANCODE_A])
 	{
@@ -170,18 +172,35 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 	}
 	if (collide_predict(rock->lava, self->box))
 	{
-		player_health -= 1;
-		slog("health %d", player_health);
+		
+		if (player_health <= 0)
+		{
+			slog("dead");
+			player_health = 0;
+			self->dead = true;
+			//player_free(self);
+			
+		}
+		else
+		{
+			player_health -= 1;
+			slog("health %d", player_health);
+		}
 	}
 	
 	entity_update(self);
-	
+	if (player_health <= 0)
+	{
+		gf2d_rect_draw(self->box, gfc_color(0, 00, 0, 1), vector2d(0, 0));
+		gf2d_rect_draw(rock->health1, gfc_color(0, 0, 0, 1));
+	}
 
-	gf2d_rect_draw(self->box, gfc_color(0, 10, 0, 1), vector2d(0, 0));
+	
 	self->box.x = self->position.x + 30;
 	self->box.y = self->position.y + 50;
 	self->think = player_think;
-	
+	return self->dead;
+	return player_health;
 
 
 }
@@ -193,12 +212,19 @@ void player_think(Entity *self, Level *level)
 	{
 		slog("no player given");
 		return NULL;
+	}	
+}
+
+void player_free(Entity *self)
+{
+	if (!self)
+	{
+		slog("nothing to free");
+		return NULL;
 	}
 	
-	
-	
-	
-	
+	gf2d_sprite_free(self);
+	free(self);
 }
 
 

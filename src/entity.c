@@ -59,6 +59,12 @@ void entity_manager_init(Uint32 maxEnts)
 		slog("failed to allocate %i entities for the entity manager", maxEnts);
 		return;
 	}
+	/*
+	for(entity in entity_manager.entityList)
+	{
+
+	}
+	*/
 	entity_manager.maxEnts = maxEnts;
 	memset(entity_manager.entityList, 0, sizeof(Entity)*maxEnts);
 	slog("entity manager initialized");

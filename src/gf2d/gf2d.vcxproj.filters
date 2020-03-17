@@ -105,6 +105,9 @@
     <ClCompile Include="..\projectile.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\health_bar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\gf2d_draw.h">
@@ -195,6 +198,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="projectile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\health_bar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
