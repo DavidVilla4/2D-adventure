@@ -1,13 +1,10 @@
-﻿Build started 3/17/2020 9:41:02 PM.
+﻿Build started 3/18/2020 6:55:10 PM.
      1>Project "C:\git\gameframework2d\src\gf2d\gf2d.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(364,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\libs\SDL2-2.0.10\lib\x86" /I"C:\libs\SDL2_ttf-2.0.15\lib\x86" /I"C:\libs\SDL2_mixer-2.0.4\lib\x86" /I"C:\libs\SDL2_image-2.0.5\lib\x86" /I"C:\libs\SDL2_image-2.0.5\include" /I"C:\libs\SDL2_mixer-2.0.4\include" /I"C:\libs\SDL2_ttf-2.0.15\include" /I"C:\libs\SDL2-2.0.10\include" /IC:\git\gameframework2d\gfc\simple_logger\include /IC:\git\gameframework2d\gfc\simple_json\include /IC:\git\gameframework2d\gfc\include /IC:\git\gameframework2d\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ..\game.c
-         game.c
-     1>..\game.c(106): warning C4305: '+=' : truncation from 'double' to 'float'
-     1>..\game.c(115): warning C4020: 'gf2d_rect_draw' : too many actual parameters
-     1>..\game.c(128): warning C4244: 'function' : conversion from 'int' to 'float', possible loss of data
-     1>..\game.c(136): warning C4020: 'player_update' : too many actual parameters
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\libs\SDL2-2.0.10\lib\x86" /I"C:\libs\SDL2_ttf-2.0.15\lib\x86" /I"C:\libs\SDL2_mixer-2.0.4\lib\x86" /I"C:\libs\SDL2_image-2.0.5\lib\x86" /I"C:\libs\SDL2_image-2.0.5\include" /I"C:\libs\SDL2_mixer-2.0.4\include" /I"C:\libs\SDL2_ttf-2.0.15\include" /I"C:\libs\SDL2-2.0.10\include" /IC:\git\gameframework2d\gfc\simple_logger\include /IC:\git\gameframework2d\gfc\simple_json\include /IC:\git\gameframework2d\gfc\include /IC:\git\gameframework2d\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ..\heart.c
+         heart.c
+     1>..\heart.c(31): warning C4133: 'function' : incompatible types - from 'Entity *' to 'Sprite *'
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\gf2d.exe" /INCREMENTAL:NO /NOLOGO SDL2.lib SDL2main.lib SDL2test.lib SDL2_ttf.lib SDL2_mixer.lib SDL2_image.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\..\gf2d.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\gf2d.lib" /MACHINE:X86 /SAFESEH Release\simple_json.obj
          Release\simple_json_array.obj
@@ -26,6 +23,7 @@
          Release\gfc_types.obj
          Release\gfc_vector.obj
          Release\collision.obj
+         Release\enemy.obj
          Release\entity.obj
          Release\game.obj
          Release\gf2d_color.obj
@@ -34,6 +32,7 @@
          Release\gf2d_sprite.obj
          Release\gf2d_shape.obj
          Release\health_bar.obj
+         Release\heart.obj
          Release\hunter.obj
          Release\interactables.obj
          Release\level.obj
@@ -44,15 +43,16 @@
          Generating code
      1>c:\git\gameframework2d\src\entity.c(43): warning C4715: 'entity_new' : not all control paths return a value
      1>c:\git\gameframework2d\src\entity.c(120): warning C4700: uninitialized local variable 'rect' used
-     1>c:\git\gameframework2d\src\game.c(113): warning C4700: uninitialized local variable 'sprite' used
-     1>c:\git\gameframework2d\src\game.c(119): warning C4700: uninitialized local variable 'water' used
-     1>c:\git\gameframework2d\src\game.c(121): warning C4700: uninitialized local variable 'shot' used
-     1>c:\git\gameframework2d\src\game.c(134): warning C4700: uninitialized local variable 'mouse' used
-     1>c:\git\gameframework2d\src\game.c(135): warning C4700: uninitialized local variable 'bug' used
+     1>c:\git\gameframework2d\src\game.c(120): warning C4700: uninitialized local variable 'sprite' used
+     1>c:\git\gameframework2d\src\game.c(126): warning C4700: uninitialized local variable 'water' used
+     1>c:\git\gameframework2d\src\game.c(128): warning C4700: uninitialized local variable 'shot' used
+     1>c:\git\gameframework2d\src\game.c(142): warning C4700: uninitialized local variable 'mouse' used
+     1>c:\git\gameframework2d\src\game.c(143): warning C4700: uninitialized local variable 'bug' used
+     1>c:\git\gameframework2d\src\game.c(148): warning C4700: uninitialized local variable 'bounce' used
          Finished generating code
          gf2d.vcxproj -> C:\git\gameframework2d\src\gf2d\..\..\gf2d.exe
      1>Done Building Project "C:\git\gameframework2d\src\gf2d\gf2d.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.26
+Time Elapsed 00:00:02.16

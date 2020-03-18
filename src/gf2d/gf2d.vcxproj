@@ -102,6 +102,7 @@
     <ClCompile Include="..\..\gfc\src\gfc_types.c" />
     <ClCompile Include="..\..\gfc\src\gfc_vector.c" />
     <ClCompile Include="..\collision.c" />
+    <ClCompile Include="..\enemy.c" />
     <ClCompile Include="..\entity.c" />
     <ClCompile Include="..\game.c" />
     <ClCompile Include="..\gf2d_color.c" />
@@ -110,6 +111,7 @@
     <ClCompile Include="..\gf2d_sprite.c" />
     <ClCompile Include="..\gf2d_shape.c" />
     <ClCompile Include="..\health_bar.c" />
+    <ClCompile Include="..\heart.c" />
     <ClCompile Include="..\hunter.c" />
     <ClCompile Include="..\interactables.c" />
     <ClCompile Include="..\level.c" />
@@ -138,6 +140,7 @@
     <ClInclude Include="..\..\gfc\simple_json\include\simple_json_value.h" />
     <ClInclude Include="..\..\gfc\simple_logger\include\simple_logger.h" />
     <ClInclude Include="..\..\include\collision.h" />
+    <ClInclude Include="..\..\include\enemy.h" />
     <ClInclude Include="..\..\include\entity.h" />
     <ClInclude Include="..\..\include\gf2d_draw.h" />
     <ClInclude Include="..\..\include\gf2d_graphics.h" />
@@ -145,6 +148,7 @@
     <ClInclude Include="..\..\include\gf2d_sprite.h" />
     <ClInclude Include="..\..\include\gf2d_window.h" />
     <ClInclude Include="..\..\include\health_bar.h" />
+    <ClInclude Include="..\..\include\heart.h" />
     <ClInclude Include="..\..\include\hunter.h" />
     <ClInclude Include="..\..\include\interactables.h" />
     <ClInclude Include="..\..\include\level.h" />

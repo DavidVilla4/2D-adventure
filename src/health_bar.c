@@ -1,6 +1,7 @@
 #include "health_bar.h"
 #include "simple_logger.h"
 #include "player.h"
+#include "interactables.h"
 
 Entity *health_new(Vector2D position)
 {
@@ -33,8 +34,19 @@ void health_update(Entity *self, Entity *player)
 	if (player->dead == true)
 	{
 		gf2d_rect_draw(self->health1, gfc_color(0, 0, 0, 1));
+		if (player->pickup == true)
+		{
+			gf2d_rect_draw(self->health1, gfc_color(1, 0, 0, 1));
+		}
 	}
+	
+
+	
 }
 void health_free(Entity *self);
 
-void health_draw(Entity *self);
+void health_draw(Entity *self)
+{
+	gf2d_rect_draw(self->health1, gfc_color(1, 0, 0, 1));
+}
+

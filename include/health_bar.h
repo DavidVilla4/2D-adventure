@@ -13,4 +13,6 @@ void health_free(Entity *self);
 
 void health_draw(Entity *self);
 
+void bar_draw(Rect *self);
+
 #endif

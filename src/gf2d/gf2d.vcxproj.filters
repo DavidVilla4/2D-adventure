@@ -111,6 +111,12 @@
     <ClCompile Include="..\SDL_window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\enemy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\heart.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\gf2d_draw.h">
@@ -207,6 +213,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\gf2d_window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\heart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

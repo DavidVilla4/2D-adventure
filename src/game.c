@@ -12,6 +12,8 @@
 #include "projectile.h"
 #include "hunter.h"
 #include "health_bar.h"
+#include "enemy.h"
+#include "heart.h"
 #include <stdio.h>
 
 
@@ -45,6 +47,9 @@ int main(int argc, char * argv[])
 	Entity *shot;
 	Entity *hunter;
 	Entity *lava;
+	Entity *bounce;
+	Entity *enemy;
+	Entity *heart;
 
 	/*program initializtion*/
 	init_logger("gf2d.log");
@@ -75,6 +80,8 @@ int main(int argc, char * argv[])
 	patroller = patroller_new(vector2d(0, 0));
 	hunter = hunter_new(vector2d(0, 0));
 	lava = health_new(vector2d(0, 0));
+	enemy = enemy_new(vector2d(0, 0));
+	heart = heart_new(vector2d(0, 0));
 	window = SDL_CreateWindow(
 		"character sheet",
 		100,
@@ -89,7 +96,7 @@ int main(int argc, char * argv[])
 	{
 		slog("bye bye");
 	}
-	surface = SDL_LoadBMP("images/health3.bmp");
+	surface = SDL_LoadBMP("images/new_health.bmp");
 	texture = SDL_CreateTextureFromSurface(renderer, surface);
 	
 	//shot = projectile_new(vector2d(player->position.x, player->position.y), player);
@@ -120,6 +127,7 @@ int main(int argc, char * argv[])
 		rock_draw(lava);
 		projectile_draw(shot);
 		patroller_draw(patroller);
+		enemy_draw(enemy);
 		//hunter_draw(hunter);
 		entity_draw_all();
 		//UI elements last
@@ -137,6 +145,10 @@ int main(int argc, char * argv[])
 		rock_update(rock);
 		rock_update(water);
 		rock_update(lava);
+		rock_update(bounce);
+		rock_update(heart);
+		enemy_update(enemy);
+		heart_update(heart, player);
 		patroller_update(patroller);
 		//projectile_update(shot, player);
 		hunter_update(hunter, player);

@@ -11,6 +11,7 @@
 #include "interactables.h"
 #include "projectile.h"
 #include "health_bar.h"
+#include "heart.h"
 
 
 
@@ -18,7 +19,7 @@
 Entity *self;
 Entity *combat;
 Level *level;
-Rect *hitbox;
+
 Entity rock;
 int player_health = 10;
 void player_think(Entity *self);
@@ -65,10 +66,13 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 	if (keys[SDL_SCANCODE_A])
 	{
 		self->velocity = vector2d(-.3, 0);
-		
+		if (collide_rect(rock->hitbox, self->box))
+		{
+			self->velocity = vector2d(10, 0);
+		}
 		if (keys[SDL_SCANCODE_P])
 		{
-			//self->position.x += 3;
+			
 			self->velocity = vector2d(0, 0);
 			self->sword = gf2d_rect(self->position.x-30, self->position.y+50, 60, 20);
 			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));	
@@ -84,6 +88,10 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 			//slog("slide");
 			self->velocity = vector2d(0, 3);
 		}
+		if (collide_rect(rock->hitbox, self->box))
+		{
+			self->velocity = vector2d(-10, 0);
+		}
 		
 		if (keys[SDL_SCANCODE_P])
 		{
@@ -96,7 +104,10 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 	else if (keys[SDL_SCANCODE_W])
 	{
 		self->velocity = vector2d(0, -.3);
-		
+		if (collide_rect(rock->hitbox, self->box))
+		{
+			self->velocity = vector2d(0, 10);
+		}
 		if (keys[SDL_SCANCODE_P])
 		{
 			self->velocity = vector2d(0, 0);
@@ -112,6 +123,12 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 	else if (keys[SDL_SCANCODE_S])
 	{
 		self->velocity=vector2d(0,.3);
+		
+		if (collide_rect(rock->hitbox, self->box))
+		{
+			self->velocity = vector2d(0, -10);
+			
+		}
 		//self->position.y += 3;
 		if (keys[SDL_SCANCODE_P])
 		{
@@ -170,9 +187,9 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 
 		}
 	}
-	if (collide_predict(rock->lava, self->box))
+	
+	if (collide_rect(rock->lava, self->box))
 	{
-		
 		if (player_health <= 0)
 		{
 			player_health = 0;
@@ -187,17 +204,22 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 		}
 	}
 	
+	
 	entity_update(self);
 	if (player_health <= 0)
 	{
-		gf2d_rect_draw(self->box, gfc_color(0, 00, 0, 1), vector2d(0, 0));
-		gf2d_rect_draw(rock->health1, gfc_color(0, 0, 0, 1));
+		gf2d_rect_draw(self->box, gfc_color(0, 0, 0, 1), vector2d(0, 0));
+		//gf2d_rect_draw(rock->health1, gfc_color(0, 0, 0, 1));
 	}
-
+	
 	
 	self->box.x = self->position.x + 30;
 	self->box.y = self->position.y + 50;
 	self->think = player_think;
+	if (collide_rect(rock->heart, self->box))
+	{
+		self->pickup = true;
+	}
 	return self->dead;
 	return player_health;
 

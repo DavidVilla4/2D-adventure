@@ -19,6 +19,8 @@ Entity *new_rock(Vector2D position)
 	self->water = gf2d_rect(200, 50, 100, 150);
 	self->ladder = gf2d_rect(200, 300, 50, 100);
 	self->lava = gf2d_rect(150, 400, 100, 100);
+	self->hitbox = gf2d_rect(100, 100, 10, 100);
+	self->heart = gf2d_rect(400, 100, 30, 25);
 
 	return self;
 }
@@ -33,6 +35,8 @@ void rock_update(Entity *self)
 	gf2d_rect_draw(self->water, gfc_color(0, 0, 10, 1), vector2d(0, 0));
 	gf2d_rect_draw(self->ladder, gfc_color(0, 20, 0, 1), vector2d(0, 0));
 	gf2d_rect_draw(self->lava, gfc_color(20, 0, 0, 1), vector2d(0, 0));
+	gf2d_rect_draw(self->hitbox, gfc_color(1, 1, 0, 1), vector2d(0, 0));
+	gf2d_rect_draw(self->heart, gfc_color(1, 1, 0, 1, vector2d(0, 0)));
 	//self->box.x = self->position.x + 50;
 	//self->box.y = self->position.y + 50;
 
@@ -53,5 +57,7 @@ void rock_draw(Entity *self)
 	gf2d_rect_draw(self->water, gfc_color(0, 0, 10, 1), vector2d(0, 0));
 	gf2d_rect_draw(self->ladder, gfc_color(0, 20, 0, 1), vector2d(0, 0));
 	gf2d_rect_draw(self->ladder, gfc_color(20, 0, 0, 1), vector2d(0, 0));
+	gf2d_rect_draw(self->hitbox, gfc_color(1, 1, 0, 1), vector2d(0, 0));
+	gf2d_rect_draw(self->heart, gfc_color(1, 1, 0, 1, vector2d(0, 0)));
 	//gf2d_draw_rect(level->bounds, vector4d(255, 0, 0, 255));
 }

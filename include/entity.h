@@ -18,6 +18,7 @@ typedef struct Entity_S
 	Rect lava;
 	Rect health1;
 	Rect enemy;
+	Rect heart;
 	Shape *testbox;
 	Rect hitbox;
 	Uint8 _inuse;
@@ -25,6 +26,7 @@ typedef struct Entity_S
 	Vector2D position; //where the ent is in 2d space
 	Vector2D velocity;//how fast the ent is
 	Bool dead;
+	Bool pickup;
 	float frame; //current frame for the sprite
 	float maxFrame;
 	float radius;
