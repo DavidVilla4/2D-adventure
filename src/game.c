@@ -12,6 +12,7 @@
 #include "projectile.h"
 #include "hunter.h"
 #include "health_bar.h"
+#include <stdio.h>
 
 
 
@@ -23,6 +24,12 @@ int main(int argc, char * argv[])
 	int posY = 30;
 	const Uint8 * keys;
 	Sprite *sprite;
+	SDL_Window *window=NULL;
+	SDL_Surface *surface=NULL;
+	SDL_Renderer *renderer=NULL;
+	SDL_Texture *texture=NULL;
+	if (surface = NULL)slog("fuck");
+	SDL_Init(SDL_INIT_VIDEO);
 	//Shape bounds;
 	int mx, my;
 	float mf = 0;
@@ -53,12 +60,13 @@ int main(int argc, char * argv[])
 	gf2d_graphics_set_frame_delay(16);
 	gf2d_sprite_init(1024);
 	SDL_ShowCursor(SDL_DISABLE);
+	keys = SDL_GetKeyboardState(NULL);
 	entity_manager_init(1024);
 
 	/*demo setup*/
 	level = level_new("images/backgrounds/bg_flat.png", bounds);
 	//bounds = gf2d_shape_rect(50, 50, 1100, 600);
-	//sprite = gf2d_sprite_load_image("images/font.png", 16, 16, 16);
+	//sprite = gf2d_sprite_load_all("images/health3.png", 800, 500, 16);
 	//mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
 	/*main game loop*/
 	//bug = newTestEnt();
@@ -67,6 +75,23 @@ int main(int argc, char * argv[])
 	patroller = patroller_new(vector2d(0, 0));
 	hunter = hunter_new(vector2d(0, 0));
 	lava = health_new(vector2d(0, 0));
+	window = SDL_CreateWindow(
+		"character sheet",
+		100,
+		100,
+		640,
+		480,
+		SDL_WINDOW_OPENGL
+		);
+	renderer = SDL_CreateRenderer(window, -1, 0);
+	
+	if (player->dead==true)
+	{
+		slog("bye bye");
+	}
+	surface = SDL_LoadBMP("images/health3.bmp");
+	texture = SDL_CreateTextureFromSurface(renderer, surface);
+	
 	//shot = projectile_new(vector2d(player->position.x, player->position.y), player);
 	
 	vector2d_set(player->position, 100, 100);
@@ -116,8 +141,10 @@ int main(int argc, char * argv[])
 		//projectile_update(shot, player);
 		hunter_update(hunter, player);
 		health_update(lava, player);
+		SDL_Rect dstrect = { 5, 5, 320, 240 };
+		SDL_RenderCopy(renderer, texture, NULL, NULL);
+		SDL_RenderPresent(renderer);
 		entity_update_all();
-		
 		//player_think(player, level);
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
 		if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
@@ -127,6 +154,11 @@ int main(int argc, char * argv[])
 	entity_free(player);
 	entity_free(shot);
 	player_free(player);
+	SDL_DestroyTexture(texture);
+	SDL_FreeSurface(surface);
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 	slog("---==== END ====---");
 	return 0;
 }

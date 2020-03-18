@@ -175,7 +175,6 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 		
 		if (player_health <= 0)
 		{
-			slog("dead");
 			player_health = 0;
 			self->dead = true;
 			//player_free(self);
