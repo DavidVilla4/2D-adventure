@@ -27,6 +27,11 @@ typedef struct Entity_S
 	Vector2D velocity;//how fast the ent is
 	Bool dead;
 	Bool pickup;
+	Bool left;
+	Bool right;
+	Bool up;
+	Bool down;
+	Bool shooting;
 	float frame; //current frame for the sprite
 	float maxFrame;
 	float radius;

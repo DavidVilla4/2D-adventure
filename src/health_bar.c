@@ -40,7 +40,7 @@ void health_update(Entity *self, Entity *player)
 		}
 	}
 	
-
+	return self;
 	
 }
 void health_free(Entity *self);

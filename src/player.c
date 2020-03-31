@@ -20,7 +20,7 @@ Entity *self;
 Entity *combat;
 Level *level;
 
-Entity rock;
+
 int player_health = 10;
 void player_think(Entity *self);
 
@@ -28,7 +28,7 @@ Entity *new_player(Vector2D position)
 {
 
 	self = entity_new();
-	
+
 	if (!self)
 	{
 		slog("no ent created");
@@ -41,6 +41,7 @@ Entity *new_player(Vector2D position)
 		16);
 
 	self->box = gf2d_rect(self->position.x, self->position.y, 50, 25);
+	
 	vector2d(self->velocity.x, self->velocity.y); 
 	
 	return self;
@@ -50,21 +51,16 @@ Entity *new_player(Vector2D position)
 
 void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 {
+	
 	vector2d_add(self->position, self->position, self->velocity);
 	gf2d_rect_draw(self->box, gfc_color(0, 10, 0, 1), vector2d(0, 0));
 	const Uint8 *keys;
 	keys = SDL_GetKeyboardState(NULL);
-	if (keys[SDL_SCANCODE_O])
-	{
-		//put projectile code here
-		//self->velocity = vector2d(-1, 0);
-		//self->sword = gf2d_rect(self->position.x - 30, self->position.y + 50, 20, 20);
-		//gf2d_rect_draw(self->sword, gfc_color(0, 1, 1, 1));
-		projectile_new(vector2d(0,0), self);
-		
-	}
+	
+	
 	if (keys[SDL_SCANCODE_A])
 	{
+	
 		self->velocity = vector2d(-.3, 0);
 		if (collide_rect(rock->hitbox, self->box))
 		{
@@ -82,6 +78,7 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 	}
 	else if (keys[SDL_SCANCODE_D])
 	{
+
 		self->velocity = vector2d(.3,0);
 		if (collide_rect(rock->water, self->box))//water code
 		{
@@ -103,6 +100,7 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 	}
 	else if (keys[SDL_SCANCODE_W])
 	{
+
 		self->velocity = vector2d(0, -.3);
 		if (collide_rect(rock->hitbox, self->box))
 		{
@@ -122,6 +120,7 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 
 	else if (keys[SDL_SCANCODE_S])
 	{
+
 		self->velocity=vector2d(0,.3);
 		
 		if (collide_rect(rock->hitbox, self->box))
@@ -204,13 +203,14 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 		}
 	}
 	
-	
-	entity_update(self);
 	if (player_health <= 0)
 	{
 		gf2d_rect_draw(self->box, gfc_color(0, 0, 0, 1), vector2d(0, 0));
-		//gf2d_rect_draw(rock->health1, gfc_color(0, 0, 0, 1));
+		
+		gf2d_rect_draw(rock->health1, gfc_color(0, 0, 0, 1), vector2d(0, 0));
 	}
+	entity_update(self);
+	
 	
 	
 	self->box.x = self->position.x + 30;
@@ -221,6 +221,11 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 		self->pickup = true;
 	}
 	return self->dead;
+	return self->left;
+	return self->right;
+	return self->up;
+	return self->down;
+	return rock;
 	return player_health;
 
 
