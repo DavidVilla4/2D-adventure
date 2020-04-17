@@ -23,6 +23,9 @@ typedef struct Entity_S
 	Rect hitbox;
 	Uint8 _inuse;
 	Sprite *sprite;
+	Sprite *water_sprite;
+	Sprite *rock_sprite;
+	Sprite *ladder_sprite;
 	Vector2D position; //where the ent is in 2d space
 	Vector2D velocity;//how fast the ent is
 	Bool dead;

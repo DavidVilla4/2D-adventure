@@ -1,32 +1,25 @@
-﻿Build started 3/31/2020 5:02:21 PM.
+﻿Build started 4/16/2020 9:53:55 PM.
      1>Project "C:\git\gameframework2d\src\gf2d\gf2d.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(364,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\libs\SDL2-2.0.10\lib\x86" /I"C:\libs\SDL2_ttf-2.0.15\lib\x86" /I"C:\libs\SDL2_mixer-2.0.4\lib\x86" /I"C:\libs\SDL2_image-2.0.5\lib\x86" /I"C:\libs\SDL2_image-2.0.5\include" /I"C:\libs\SDL2_mixer-2.0.4\include" /I"C:\libs\SDL2_ttf-2.0.15\include" /I"C:\libs\SDL2-2.0.10\include" /IC:\git\gameframework2d\gfc\simple_logger\include /IC:\git\gameframework2d\gfc\simple_json\include /IC:\git\gameframework2d\gfc\include /IC:\git\gameframework2d\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ..\player.c
-         player.c
-     1>..\player.c(56): warning C4020: 'gf2d_rect_draw' : too many actual parameters
-     1>..\player.c(64): warning C4305: 'function' : truncation from 'double' to 'float'
-     1>..\player.c(82): warning C4305: 'function' : truncation from 'double' to 'float'
-     1>..\player.c(104): warning C4305: 'function' : truncation from 'double' to 'float'
-     1>..\player.c(124): warning C4305: 'function' : truncation from 'double' to 'float'
-     1>..\player.c(136): warning C4020: 'gf2d_rect_draw' : too many actual parameters
-     1>..\player.c(150): warning C4305: 'function' : truncation from 'double' to 'float'
-     1>..\player.c(159): warning C4305: 'function' : truncation from 'double' to 'float'
-     1>..\player.c(166): warning C4305: 'function' : truncation from 'double' to 'float'
-     1>..\player.c(171): warning C4305: 'function' : truncation from 'double' to 'float'
-     1>..\player.c(208): warning C4020: 'gf2d_rect_draw' : too many actual parameters
-     1>..\player.c(210): warning C4020: 'gf2d_rect_draw' : too many actual parameters
-     1>..\player.c(223): warning C4098: 'player_update' : 'void' function returning a value
-     1>..\player.c(224): warning C4098: 'player_update' : 'void' function returning a value
-     1>..\player.c(225): warning C4098: 'player_update' : 'void' function returning a value
-     1>..\player.c(226): warning C4098: 'player_update' : 'void' function returning a value
-     1>..\player.c(227): warning C4098: 'player_update' : 'void' function returning a value
-     1>..\player.c(228): warning C4098: 'player_update' : 'void' function returning a value
-     1>..\player.c(229): warning C4098: 'player_update' : 'void' function returning a value
-     1>..\player.c(235): warning C4029: declared formal parameter list different from definition
-     1>..\player.c(240): warning C4098: 'player_think' : 'void' function returning a value
-     1>..\player.c(249): warning C4098: 'player_free' : 'void' function returning a value
-     1>..\player.c(252): warning C4133: 'function' : incompatible types - from 'Entity *' to 'Sprite *'
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\libs\SDL2-2.0.10\lib\x86" /I"C:\libs\SDL2_ttf-2.0.15\lib\x86" /I"C:\libs\SDL2_mixer-2.0.4\lib\x86" /I"C:\libs\SDL2_image-2.0.5\lib\x86" /I"C:\libs\SDL2_image-2.0.5\include" /I"C:\libs\SDL2_mixer-2.0.4\include" /I"C:\libs\SDL2_ttf-2.0.15\include" /I"C:\libs\SDL2-2.0.10\include" /IC:\git\gameframework2d\gfc\simple_logger\include /IC:\git\gameframework2d\gfc\simple_json\include /IC:\git\gameframework2d\gfc\include /IC:\git\gameframework2d\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ..\interactables.c
+         interactables.c
+     1>..\interactables.c(35): warning C4020: 'gf2d_rect_draw' : too many actual parameters
+     1>..\interactables.c(36): warning C4020: 'gf2d_rect_draw' : too many actual parameters
+     1>..\interactables.c(37): warning C4020: 'gf2d_rect_draw' : too many actual parameters
+     1>..\interactables.c(38): warning C4020: 'gf2d_rect_draw' : too many actual parameters
+     1>..\interactables.c(39): warning C4020: 'gf2d_rect_draw' : too many actual parameters
+     1>..\interactables.c(40): warning C4020: 'gfc_color' : too many actual parameters
+     1>..\interactables.c(41): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>..\interactables.c(42): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>..\interactables.c(43): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>..\interactables.c(52): warning C4133: 'function' : incompatible types - from 'Entity *' to 'Sprite *'
+     1>..\interactables.c(61): warning C4020: 'gf2d_rect_draw' : too many actual parameters
+     1>..\interactables.c(62): warning C4020: 'gf2d_rect_draw' : too many actual parameters
+     1>..\interactables.c(63): warning C4020: 'gf2d_rect_draw' : too many actual parameters
+     1>..\interactables.c(64): warning C4020: 'gf2d_rect_draw' : too many actual parameters
+     1>..\interactables.c(65): warning C4020: 'gf2d_rect_draw' : too many actual parameters
+     1>..\interactables.c(66): warning C4020: 'gfc_color' : too many actual parameters
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\gf2d.exe" /INCREMENTAL:NO /NOLOGO SDL2.lib SDL2main.lib SDL2test.lib SDL2_ttf.lib SDL2_mixer.lib SDL2_image.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\..\gf2d.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\gf2d.lib" /MACHINE:X86 /SAFESEH Release\simple_json.obj
          Release\simple_json_array.obj
@@ -66,22 +59,21 @@
          Generating code
      1>c:\git\gameframework2d\src\entity.c(43): warning C4715: 'entity_new' : not all control paths return a value
      1>c:\git\gameframework2d\src\entity.c(120): warning C4700: uninitialized local variable 'rect' used
-     1>c:\git\gameframework2d\src\game.c(281): warning C4700: uninitialized local variable 'sprite' used
-     1>c:\git\gameframework2d\src\game.c(287): warning C4700: uninitialized local variable 'water' used
-     1>c:\git\gameframework2d\src\game.c(289): warning C4700: uninitialized local variable 'shot' used
-     1>c:\git\gameframework2d\src\game.c(303): warning C4700: uninitialized local variable 'mouse' used
-     1>c:\git\gameframework2d\src\game.c(304): warning C4700: uninitialized local variable 'bug' used
-     1>c:\git\gameframework2d\src\game.c(309): warning C4700: uninitialized local variable 'bounce' used
-     1>c:\git\gameframework2d\src\game.c(109): warning C4700: uninitialized local variable 'shot' used
-     1>c:\git\gameframework2d\src\game.c(131): warning C4700: uninitialized local variable 'sprite' used
-     1>c:\git\gameframework2d\src\game.c(137): warning C4700: uninitialized local variable 'water' used
-     1>c:\git\gameframework2d\src\game.c(153): warning C4700: uninitialized local variable 'mouse' used
-     1>c:\git\gameframework2d\src\game.c(154): warning C4700: uninitialized local variable 'bug' used
-     1>c:\git\gameframework2d\src\game.c(159): warning C4700: uninitialized local variable 'bounce' used
+     1>c:\git\gameframework2d\src\game.c(293): warning C4700: uninitialized local variable 'level' used
+     1>c:\git\gameframework2d\src\game.c(297): warning C4700: uninitialized local variable 'water' used
+     1>c:\git\gameframework2d\src\game.c(299): warning C4700: uninitialized local variable 'shot' used
+     1>c:\git\gameframework2d\src\game.c(313): warning C4700: uninitialized local variable 'mouse' used
+     1>c:\git\gameframework2d\src\game.c(314): warning C4700: uninitialized local variable 'bug' used
+     1>c:\git\gameframework2d\src\game.c(319): warning C4700: uninitialized local variable 'bounce' used
+     1>c:\git\gameframework2d\src\game.c(113): warning C4700: uninitialized local variable 'shot' used
+     1>c:\git\gameframework2d\src\game.c(143): warning C4700: uninitialized local variable 'water' used
+     1>c:\git\gameframework2d\src\game.c(159): warning C4700: uninitialized local variable 'mouse' used
+     1>c:\git\gameframework2d\src\game.c(160): warning C4700: uninitialized local variable 'bug' used
+     1>c:\git\gameframework2d\src\game.c(165): warning C4700: uninitialized local variable 'bounce' used
          Finished generating code
          gf2d.vcxproj -> C:\git\gameframework2d\src\gf2d\..\..\gf2d.exe
      1>Done Building Project "C:\git\gameframework2d\src\gf2d\gf2d.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.10
+Time Elapsed 00:00:01.45

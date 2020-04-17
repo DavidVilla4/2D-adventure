@@ -28,6 +28,7 @@ int main(int argc, char * argv[])
 	int posY = 30;
 	const Uint8 * keys;
 	Sprite *sprite;
+	Sprite *blue;
 	SDL_Window *window=NULL;
 	SDL_Surface *surface=NULL;
 	SDL_Renderer *renderer=NULL;
@@ -72,11 +73,14 @@ int main(int argc, char * argv[])
 	SDL_ShowCursor(SDL_DISABLE);
 	keys = SDL_GetKeyboardState(NULL);
 	entity_manager_init(1024);
-
+	
 	/*demo setup*/
-	level = level_new("images/backgrounds/bg_flat.png", bounds);
+	level = level_new("images/backgrounds/2dbg.png", bounds);
+	sprite = gf2d_sprite_load_image("images/backgrounds/2dbg.png");
 	//bounds = gf2d_shape_rect(50, 50, 1100, 600);
-	//sprite = gf2d_sprite_load_all("images/health3.png", 800, 500, 16);
+	//sprite = gf2d_sprite_load_all("images/water1.png", 100, 150, 16);
+	//blue = gf2d_sprite_load_all("images/water1.png", 800, 500, 16);
+	
 	//mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
 	/*main game loop*/
 	//bug = newTestEnt();
@@ -108,16 +112,13 @@ int main(int argc, char * argv[])
 	vector2d_set(player->position, 100, 100);
 	vector2d_set(shot->position, player->position.x, player->position.y);
 	//vector2d_set(self->position, 50, 100);
+
 	while (!done)
 	{
-
 		SDL_PumpEvents();   // update SDL's internal event structures
 		keys = SDL_GetKeyboardState(NULL); // get the keyboard state for this frame
 		/*update things here*/
-		if (keys[SDL_SCANCODE_O])
-		{
-			shot = projectile_new(vector2d(0, 0), player);
-		}
+		
 		
 		
 		SDL_GetMouseState(&mx, &my);
@@ -128,9 +129,14 @@ int main(int argc, char * argv[])
 		gf2d_graphics_clear_screen();// clears drawing buffers
 		// all drawing should happen betweem clear_screen and next_frame
 		//backgrounds drawn first
-		gf2d_sprite_draw_image(sprite, vector2d(0, 0));
+
+		gf2d_sprite_draw_image(sprite, vector2d(100, 80));
 		//gf2d_shape_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
 		gf2d_rect_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
+		/*if (keys[SDL_SCANCODE_O])
+		{
+		shot = projectile_new(vector2d(0, 0), player);
+		}*/
 		//vector2d_set(self->position, 50, 50);
 		level_draw(level);
 		//rock_draw(rock);
@@ -168,6 +174,10 @@ int main(int argc, char * argv[])
 		SDL_RenderCopy(renderer, texture, NULL, NULL);
 		SDL_RenderPresent(renderer);
 		entity_update_all();
+		if (keys[SDL_SCANCODE_0])
+		{
+			Level2();
+		}
 		//player_think(player, level);
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
 		if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
@@ -241,9 +251,9 @@ int Level2()
 	entity_manager_init(1024);
 
 	/*demo setup*/
-	level = level_new("images/backgrounds/bg_flat.png", bounds);
+	//level = level_new("images/backgrounds/bg_flat.png", bounds);
 	//bounds = gf2d_shape_rect(50, 50, 1100, 600);
-	//sprite = gf2d_sprite_load_all("images/health3.png", 800, 500, 16);
+	sprite = gf2d_sprite_load_all("images/water1.png", 100, 150, 16);
 	//mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
 	/*main game loop*/
 	//bug = newTestEnt();
@@ -278,9 +288,9 @@ int Level2()
 		gf2d_graphics_clear_screen();// clears drawing buffers
 		// all drawing should happen betweem clear_screen and next_frame
 		//backgrounds drawn first
-		gf2d_sprite_draw_image(sprite, vector2d(0, 0));
+		gf2d_sprite_draw_image(sprite, vector2d(200, 50));
 		//gf2d_shape_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
-		gf2d_rect_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
+		gf2d_rect_draw(level->bounds, gfc_color(0, 10, 0, 1));
 		//vector2d_set(self->position, 50, 50);
 		level_draw(level);
 		//rock_draw(rock);
