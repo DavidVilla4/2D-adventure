@@ -13,9 +13,11 @@ Entity *new_rock(Vector2D position)
 		slog("no ent created");
 		return NULL;
 	}
-	self->rock_sprite = gf2d_sprite_load_all("images/rock.png", 50, 30, 0);
+	self->rock_sprite = gf2d_sprite_load_all("images/rock.png", 50, 30, 45);
 	self->water_sprite = gf2d_sprite_load_all("images/water.jpg", 100, 150, 0);
-	self->ladder_sprite = gf2d_sprite_load_all("images/accessories/ladder.png", 100, 200, 0);
+	self->ladder_sprite = gf2d_sprite_load_all("images/wooden_stairs.jpg", 75, 100, 0);
+	//self->rock_sprite = gf2d_sprite_load_all("images/lava.png",100,100,45);
+
 	self->rock = gf2d_rect(300, 500, 50, 25);
 	self->water = gf2d_rect(200, 80, 100, 150);
 	self->ladder = gf2d_rect(200, 300, 50, 100);
@@ -39,11 +41,13 @@ void rock_update(Entity *self)
 	gf2d_rect_draw(self->hitbox, gfc_color(1, 1, 0, 1), vector2d(0, 0));
 	gf2d_rect_draw(self->heart, gfc_color(1, 1, 0, 1, vector2d(0, 0)));
 	gf2d_sprite_draw_image(self->rock_sprite, vector2d(self->rock.x, self->rock.y));
-	gf2d_sprite_draw_image(self ->water_sprite, vector2d(self->water.x, self->water.y));
-	gf2d_sprite_draw_image(self->ladder_sprite, vector2d(self->ladder.x-20, self->ladder.y));
+	gf2d_sprite_draw_image(self->water_sprite, vector2d(self->water.x, self->water.y));
+	gf2d_sprite_draw_image(self->ladder_sprite, vector2d(self->ladder.x, self->ladder.y));
+	//gf2d_sprite_draw_image(self->rock_sprite, vector2d(self->lava.x, self->lava.y));
+	
 	//self->box.x = self->position.x + 50;
 	//self->box.y = self->position.y + 50;
-
+	//entity_update(self);
 }
 
 void rock_free(Entity *self)

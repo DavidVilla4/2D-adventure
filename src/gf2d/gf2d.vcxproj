@@ -120,6 +120,7 @@
     <ClCompile Include="..\projectile.c" />
     <ClCompile Include="..\proj_left.c" />
     <ClCompile Include="..\SDL_window.c" />
+    <ClCompile Include="..\selector.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\gfc\include\gfc_audio.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="..\..\include\patroller.h" />
     <ClInclude Include="..\..\include\player.h" />
     <ClInclude Include="..\..\include\proj_left.h" />
+    <ClInclude Include="..\..\include\selector.h" />
     <ClInclude Include="projectile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

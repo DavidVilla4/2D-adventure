@@ -26,6 +26,9 @@ typedef struct Entity_S
 	Sprite *water_sprite;
 	Sprite *rock_sprite;
 	Sprite *ladder_sprite;
+	Sprite *heart_sprite;
+	Sprite *new_sprite;
+	Sprite *fire_sprite;
 	Vector2D position; //where the ent is in 2d space
 	Vector2D velocity;//how fast the ent is
 	Bool dead;
