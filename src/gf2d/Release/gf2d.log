@@ -1,9 +1,9 @@
-﻿Build started 4/24/2020 5:18:44 AM.
+﻿Build started 5/4/2020 11:09:42 PM.
      1>Project "C:\git\gameframework2d\src\gf2d\gf2d.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(364,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\libs\SDL2-2.0.10\lib\x86" /I"C:\libs\SDL2_ttf-2.0.15\lib\x86" /I"C:\libs\SDL2_mixer-2.0.4\lib\x86" /I"C:\libs\SDL2_image-2.0.5\lib\x86" /I"C:\libs\SDL2_image-2.0.5\include" /I"C:\libs\SDL2_mixer-2.0.4\include" /I"C:\libs\SDL2_ttf-2.0.15\include" /I"C:\libs\SDL2-2.0.10\include" /IC:\git\gameframework2d\gfc\simple_logger\include /IC:\git\gameframework2d\gfc\simple_json\include /IC:\git\gameframework2d\gfc\include /IC:\git\gameframework2d\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ..\selector.c
-         selector.c
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\libs\SDL2-2.0.10\lib\x86" /I"C:\libs\SDL2_ttf-2.0.15\lib\x86" /I"C:\libs\SDL2_mixer-2.0.4\lib\x86" /I"C:\libs\SDL2_image-2.0.5\lib\x86" /I"C:\libs\SDL2_image-2.0.5\include" /I"C:\libs\SDL2_mixer-2.0.4\include" /I"C:\libs\SDL2_ttf-2.0.15\include" /I"C:\libs\SDL2-2.0.10\include" /IC:\git\gameframework2d\gfc\simple_logger\include /IC:\git\gameframework2d\gfc\simple_json\include /IC:\git\gameframework2d\gfc\include /IC:\git\gameframework2d\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ..\boss1.c
+         boss1.c
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\gf2d.exe" /INCREMENTAL:NO /NOLOGO SDL2.lib SDL2main.lib SDL2test.lib SDL2_ttf.lib SDL2_mixer.lib SDL2_image.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\..\gf2d.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\gf2d.lib" /MACHINE:X86 /SAFESEH Release\simple_json.obj
          Release\simple_json_array.obj
@@ -21,6 +21,7 @@
          Release\gfc_text.obj
          Release\gfc_types.obj
          Release\gfc_vector.obj
+         Release\boss1.obj
          Release\collision.obj
          Release\enemy.obj
          Release\entity.obj
@@ -41,30 +42,29 @@
          Release\proj_left.obj
          Release\SDL_window.obj
          Release\selector.obj
+         Release\stone.obj
          Generating code
      1>c:\git\gameframework2d\src\entity.c(43): warning C4715: 'entity_new' : not all control paths return a value
      1>c:\git\gameframework2d\src\entity.c(120): warning C4700: uninitialized local variable 'rect' used
-     1>c:\git\gameframework2d\src\game.c(435): warning C4700: uninitialized local variable 'shot' used
-     1>c:\git\gameframework2d\src\game.c(446): warning C4700: uninitialized local variable 'mouse' used
-     1>c:\git\gameframework2d\src\game.c(448): warning C4700: uninitialized local variable 'water' used
-     1>c:\git\gameframework2d\src\game.c(448): warning C4700: uninitialized local variable 'rock' used
-     1>c:\git\gameframework2d\src\game.c(448): warning C4700: uninitialized local variable 'level' used
-     1>c:\git\gameframework2d\src\game.c(448): warning C4700: uninitialized local variable 'player' used
-     1>c:\git\gameframework2d\src\game.c(294): warning C4700: uninitialized local variable 'level' used
-     1>c:\git\gameframework2d\src\game.c(298): warning C4700: uninitialized local variable 'water' used
-     1>c:\git\gameframework2d\src\game.c(300): warning C4700: uninitialized local variable 'shot' used
-     1>c:\git\gameframework2d\src\game.c(314): warning C4700: uninitialized local variable 'mouse' used
-     1>c:\git\gameframework2d\src\game.c(315): warning C4700: uninitialized local variable 'bug' used
-     1>c:\git\gameframework2d\src\game.c(320): warning C4700: uninitialized local variable 'bounce' used
-     1>c:\git\gameframework2d\src\game.c(113): warning C4700: uninitialized local variable 'shot' used
-     1>c:\git\gameframework2d\src\game.c(143): warning C4700: uninitialized local variable 'water' used
-     1>c:\git\gameframework2d\src\game.c(159): warning C4700: uninitialized local variable 'mouse' used
-     1>c:\git\gameframework2d\src\game.c(160): warning C4700: uninitialized local variable 'bug' used
-     1>c:\git\gameframework2d\src\game.c(165): warning C4700: uninitialized local variable 'bounce' used
+     1>c:\git\gameframework2d\src\stone.c(37): warning C4716: 'stone_update' : must return a value
+     1>c:\git\gameframework2d\src\game.c(291): warning C4700: uninitialized local variable 'shot' used
+     1>c:\git\gameframework2d\src\game.c(575): warning C4700: uninitialized local variable 'water' used
+     1>c:\git\gameframework2d\src\game.c(575): warning C4700: uninitialized local variable 'level' used
+     1>c:\git\gameframework2d\src\game.c(403): warning C4700: uninitialized local variable 'level' used
+     1>c:\git\gameframework2d\src\game.c(407): warning C4700: uninitialized local variable 'water' used
+     1>c:\git\gameframework2d\src\game.c(409): warning C4700: uninitialized local variable 'shot' used
+     1>c:\git\gameframework2d\src\game.c(423): warning C4700: uninitialized local variable 'mouse' used
+     1>c:\git\gameframework2d\src\game.c(424): warning C4700: uninitialized local variable 'bug' used
+     1>c:\git\gameframework2d\src\game.c(429): warning C4700: uninitialized local variable 'bounce' used
+     1>c:\git\gameframework2d\src\game.c(115): warning C4700: uninitialized local variable 'shot' used
+     1>c:\git\gameframework2d\src\game.c(145): warning C4700: uninitialized local variable 'water' used
+     1>c:\git\gameframework2d\src\game.c(161): warning C4700: uninitialized local variable 'mouse' used
+     1>c:\git\gameframework2d\src\game.c(162): warning C4700: uninitialized local variable 'bug' used
+     1>c:\git\gameframework2d\src\game.c(167): warning C4700: uninitialized local variable 'bounce' used
          Finished generating code
          gf2d.vcxproj -> C:\git\gameframework2d\src\gf2d\..\..\gf2d.exe
      1>Done Building Project "C:\git\gameframework2d\src\gf2d\gf2d.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.98
+Time Elapsed 00:00:00.84

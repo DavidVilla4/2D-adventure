@@ -101,6 +101,7 @@
     <ClCompile Include="..\..\gfc\src\gfc_text.c" />
     <ClCompile Include="..\..\gfc\src\gfc_types.c" />
     <ClCompile Include="..\..\gfc\src\gfc_vector.c" />
+    <ClCompile Include="..\boss1.c" />
     <ClCompile Include="..\collision.c" />
     <ClCompile Include="..\enemy.c" />
     <ClCompile Include="..\entity.c" />
@@ -121,6 +122,7 @@
     <ClCompile Include="..\proj_left.c" />
     <ClCompile Include="..\SDL_window.c" />
     <ClCompile Include="..\selector.c" />
+    <ClCompile Include="..\stone.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\gfc\include\gfc_audio.h" />
@@ -141,6 +143,7 @@
     <ClInclude Include="..\..\gfc\simple_json\include\simple_json_string.h" />
     <ClInclude Include="..\..\gfc\simple_json\include\simple_json_value.h" />
     <ClInclude Include="..\..\gfc\simple_logger\include\simple_logger.h" />
+    <ClInclude Include="..\..\include\boss1.h" />
     <ClInclude Include="..\..\include\collision.h" />
     <ClInclude Include="..\..\include\enemy.h" />
     <ClInclude Include="..\..\include\entity.h" />
@@ -158,6 +161,7 @@
     <ClInclude Include="..\..\include\player.h" />
     <ClInclude Include="..\..\include\proj_left.h" />
     <ClInclude Include="..\..\include\selector.h" />
+    <ClInclude Include="..\..\include\stone.h" />
     <ClInclude Include="projectile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

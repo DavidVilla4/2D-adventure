@@ -30,4 +30,10 @@ void sel_update(Entity *self)
 	{
 		vector2d_set(self->box, 350, 230);
 	}
+
+
+	if (keys[SDL_SCANCODE_0])
+	{
+		Level2();
+	}
 }
