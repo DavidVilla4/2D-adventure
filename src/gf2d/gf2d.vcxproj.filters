@@ -129,6 +129,9 @@
     <ClCompile Include="..\stone.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\boss2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\gf2d_draw.h">
@@ -243,6 +246,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\stone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\boss2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
