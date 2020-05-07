@@ -39,6 +39,7 @@ Entity *new_player(Vector2D position)
 		128,
 		128,
 		16);
+	self->water_sprite = gf2d_sprite_load_image("images/sword.png");
 
 	self->box = gf2d_rect(self->position.x, self->position.y, 50, 25);
 
@@ -47,7 +48,17 @@ Entity *new_player(Vector2D position)
 	return self;
 
 }
+void player_free(Entity *self)
+{
+	if (!self)
+	{
+		slog("nothing to free");
+		return NULL;
+	}
 
+	gf2d_sprite_free(self);
+	free(self);
+}
 
 void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 {
@@ -95,6 +106,7 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 
 			self->velocity = vector2d(0, 0);
 			self->sword = gf2d_rect(self->position.x + 80, self->position.y + 50, 60, 20);
+			gf2d_sprite_draw_image(self->water_sprite, vector2d(self->sword.x,self->sword.y));
 			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));
 		}
 	}
@@ -200,6 +212,8 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 		{
 			player_health -= 1;
 			slog("health %d", player_health);
+			//player_free(self);
+			//menu();
 		}
 	}
 
@@ -241,14 +255,3 @@ void player_think(Entity *self, Level *level)
 	}
 }
 
-void player_free(Entity *self)
-{
-	if (!self)
-	{
-		slog("nothing to free");
-		return NULL;
-	}
-
-	gf2d_sprite_free(self);
-	free(self);
-}

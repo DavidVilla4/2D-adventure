@@ -60,7 +60,7 @@ int main(int argc, char * argv[])
 	Entity *enemy;
 	Entity *heart;
 	Sound *menu_music;
-	//gfc_audio_init(256, 16, 4, 1, 1, 1);
+	//
 
 	/*program initializtion*/
 	init_logger("gf2d.log");
@@ -74,6 +74,7 @@ int main(int argc, char * argv[])
 		vector4d(0, 0, 0, 255),
 		0);
 	gf2d_graphics_set_frame_delay(16);
+	gfc_audio_init(256, 16, 4, 1, 1, 1);
 	gf2d_sprite_init(1024);
 	SDL_ShowCursor(SDL_DISABLE);
 	keys = SDL_GetKeyboardState(NULL);
@@ -97,7 +98,7 @@ int main(int argc, char * argv[])
 	enemy = enemy_new(vector2d(0, 0));
 	heart = heart_new(vector2d(0, 0));
 	//shot = projectile_new(vector2d(0, 0), player);
-	//menu_music=gfc_sound_load("music/the_field_of_dreams.mp3",10,1);
+	menu_music=gfc_sound_load("music/the_field_of_dreams.mp3",3,-1);
 	
 	
 	window = SDL_CreateWindow(
@@ -137,7 +138,7 @@ int main(int argc, char * argv[])
 		// all drawing should happen betweem clear_screen and next_frame
 		//backgrounds drawn first
 		
-		//gfc_sound_play(menu_music, 1, 10, 10, 1);
+		gfc_sound_play(menu_music, 0, 3, -1, -1);
 	
 		gf2d_sprite_draw_image(sprite, vector2d(100, 80));
 		//gf2d_shape_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
@@ -186,7 +187,8 @@ int main(int argc, char * argv[])
 		entity_update_all();
 		if (keys[SDL_SCANCODE_0])
 		{
-			boss2();
+			Level2();
+			done = 1;
 		}
 		
 		//player_think(player, level);
@@ -194,6 +196,8 @@ int main(int argc, char * argv[])
 		if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
 		//slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());
 	}
+	//gfc_sound_free(menu_music);
+	
 	level_free(level);
 	entity_free(player);
 	entity_free(shot);
@@ -203,9 +207,10 @@ int main(int argc, char * argv[])
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
+	
 	slog("---==== END ====---");
 
-	Level2();
+	
 	return 0;
 }
 
@@ -302,10 +307,10 @@ int menu()
 		
 		entity_update_all();
 		
-		/*if (keys[SDL_SCANCODE_0])
+		if (keys[SDL_SCANCODE_0])
 		{
-			Level2();
-		}*/
+			menu();
+		}
 		
 		//player_think(player, level);
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
@@ -446,7 +451,7 @@ int Level2()
 		entity_update_all();
 		if (keys[SDL_SCANCODE_0])
 		{
-			menu();
+			Boss1();
 		}
 		//player_think(player, level);
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
@@ -596,7 +601,10 @@ int Boss1()
 		boss1_update(enemy);
 		stone_update(hunter, player);
 		entity_update_all();
-		
+		if (keys[SDL_SCANCODE_0])
+		{
+			boss2();
+		}
 		//player_think(player, level);
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
 		if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
@@ -740,7 +748,10 @@ int boss2()
 		boss2_update(enemy, player);
 		//stone_update(hunter, player);
 		entity_update_all();
-
+		if (keys[SDL_SCANCODE_0])
+		{
+			menu();
+		}
 		//player_think(player, level);
 		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
 		if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
