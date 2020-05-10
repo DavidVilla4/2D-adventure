@@ -42,7 +42,6 @@ void patroller_update(Entity *self)
 	}
 	if (timer < 25.0f)
 	{
-		self->frame=
 		self->enemy.x += 1;
 	}
 	else if (timer >= 25.0f)

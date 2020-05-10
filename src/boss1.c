@@ -1,6 +1,7 @@
 #include "boss1.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
+#include "player.h"
 
 static float timer = 0.0f;
 static float new_timer = 0.0f;
@@ -15,10 +16,10 @@ Entity *boss1_new(Vector2D poisiton)
 		return NULL;
 	}
 	
-	//self->sprite = gf2d_sprite_load_image("images/po.png");
+	self->sprite = gf2d_sprite_load_all("images/po.png",64,64,0);
 
 	self->box = gf2d_rect(600, 325, 232, 217);
-
+	
 	self->hitbox = gf2d_rect(570, 325, 50, 25);
 
 	self->lava = gf2d_rect(570, 425, 50, 25);
@@ -29,18 +30,23 @@ Entity *boss1_new(Vector2D poisiton)
 
 	self->enemy = gf2d_rect(570, 370, 50, 25);
 
+	vector2d_set(self->position, 600, 325);
+
 	return self;
 }
 
-void boss1_update(Entity *self)
+void boss1_update(Entity *self, Entity *player)
 {
+	const Uint8 *keys;
+	keys = SDL_GetKeyboardState(NULL);
 	gf2d_rect_draw(self->box, gfc_color(1, 0, 0, 1));
 	gf2d_rect_draw(self->hitbox, gfc_color(0, 0, 1, 1));
 	gf2d_rect_draw(self->lava, gfc_color(0, 0, 1, 1));
 	gf2d_rect_draw(self->bounce, gfc_color(0,0,1,1));
 	gf2d_rect_draw(self->ladder, gfc_color(0, 0, 1, 1));
 	gf2d_rect_draw(self->enemy, gfc_color(0, 0, 1, 1));
-	//gf2d_sprite_draw_image(self->sprite, vector2d(800,300));
+	
+	//gf2d_sprite_draw_image(self->sprite, vector2d(self->box.x,self->box.y));
 	timer += 0.1f;
 	new_timer += 0.1f;
 
@@ -75,9 +81,27 @@ void boss1_update(Entity *self)
 		vector2d_set(self->enemy, 570, 375);
 		new_timer = 0.0f;
 	}
+
+
+	if (collide_rect(player->sword, self->box))
+	{
+		
+		boss1_free(self);
+	}
 }
 
-void boss1_free(Entity *self);
+void boss1_free(Entity *self)
+{
+	if (!self)
+	{
+		slog("nothing to free");
+		return NULL;
+	}
+	slog("freed");
+	gf2d_sprite_delete(self->sprite);
+	
+	gf2d_sprite_free(self);
+}
 
 void boss1_draw(Entity *self)
 {

@@ -5,7 +5,7 @@
 
 Entity *boss1_new(Vector2D poisiton);
 
-void boss1_update(Entity *self);
+void boss1_update(Entity *self, Entity *player);
 
 void boss1_free(Entity *self);
 
