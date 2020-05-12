@@ -18,6 +18,8 @@
 #include "boss1.h"
 #include "stone.h"
 #include "gfc_audio.h"
+#include "sign.h"
+#include "shield.h"
 #include <stdio.h>
 
 #define MAX_SHOTS 10	
@@ -32,6 +34,7 @@ int main(int argc, char * argv[])
 	const Uint8 * keys;
 	Sprite *sprite;
 	Sprite *blue;
+	Sprite *info;
 	SDL_Window *window=NULL;
 	SDL_Surface *surface=NULL;
 	SDL_Renderer *renderer=NULL;
@@ -46,6 +49,7 @@ int main(int argc, char * argv[])
 	Sprite *mouse;
 	Vector4D mouseColor = { 255, 100, 255, 200 };
 	SDL_Rect bounds = { 0, 0, 100, 200 };
+	Rect post;
 	Level *level;
 	Entity *bug;
 	Entity *player;
@@ -59,6 +63,8 @@ int main(int argc, char * argv[])
 	Entity *bounce;
 	Entity *enemy;
 	Entity *heart;
+	Entity *sign;
+	Entity *shield;
 	Sound *menu_music;
 	//
 
@@ -83,6 +89,7 @@ int main(int argc, char * argv[])
 	/*demo setup*/
 	level = level_new("images/backgrounds/2dbg.png", bounds);
 	sprite = gf2d_sprite_load_image("images/backgrounds/2dbg.png");
+	info = gf2d_sprite_load_image("images/beer.png");
 	//bounds = gf2d_shape_rect(50, 50, 1100, 600);
 	//sprite = gf2d_sprite_load_all("images/water1.png", 100, 150, 16);
 	//blue = gf2d_sprite_load_all("images/water1.png", 800, 500, 16);
@@ -97,7 +104,10 @@ int main(int argc, char * argv[])
 	lava = health_new(vector2d(0, 0));
 	enemy = enemy_new(vector2d(0, 0));
 	heart = heart_new(vector2d(0, 0));
+	//sign = sign_new(vector2d(0, 0));
+	shield = shield_new(vector2d(0, 0));
 	//shot = projectile_new(vector2d(0, 0), player);
+	post = gf2d_rect(700, 300, 30, 50);
 	//menu_music=gfc_sound_load("music/the_field_of_dreams.mp3",3,-1);
 	
 	
@@ -120,7 +130,7 @@ int main(int argc, char * argv[])
 	vector2d_set(player->position, 100, 100);
 	vector2d_set(shot->position, player->position.x, player->position.y);
 	//vector2d_set(self->position, 50, 100);
-
+	
 	while (!done)
 	{
 		SDL_PumpEvents();   // update SDL's internal event structures
@@ -141,13 +151,24 @@ int main(int argc, char * argv[])
 		//gfc_sound_play(menu_music, 0, 3, -1, -1);
 	
 		gf2d_sprite_draw_image(sprite, vector2d(100, 80));
+		
+		gf2d_rect_draw(post, gfc_color(1, 0, 0, 1));
+		
 		//gf2d_shape_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
-		gf2d_rect_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
+		//gf2d_rect_draw(level->bounds, gfc_color(0, 10, 0, 1), vector2d(0, 0));
 
 		if (keys[SDL_SCANCODE_O])
 		{
 		shot = projectile_new(vector2d(0, 0), player);
 		}
+		if (collide_rect(post, player->box))
+		{
+			if (keys[SDL_SCANCODE_L])
+			{
+				gf2d_sprite_draw_image(info, vector2d(500, 200));
+			}
+		}
+		
 		//vector2d_set(self->position, 50, 50);
 		level_draw(level);
 		//rock_draw(rock);
@@ -181,6 +202,8 @@ int main(int argc, char * argv[])
 		projectile_update(shot, player);
 		hunter_update(hunter, player);
 		health_update(lava, player);
+		//sign_update(sign, player);
+		//shield_update(shield, player);
 		SDL_Rect dstrect = { 5, 5, 320, 240 };
 		SDL_RenderCopy(renderer, texture, NULL, NULL);
 		SDL_RenderPresent(renderer);

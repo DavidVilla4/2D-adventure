@@ -123,6 +123,8 @@
     <ClCompile Include="..\proj_left.c" />
     <ClCompile Include="..\SDL_window.c" />
     <ClCompile Include="..\selector.c" />
+    <ClCompile Include="..\shield.c" />
+    <ClCompile Include="..\sign.c" />
     <ClCompile Include="..\stone.c" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +165,8 @@
     <ClInclude Include="..\..\include\player.h" />
     <ClInclude Include="..\..\include\proj_left.h" />
     <ClInclude Include="..\..\include\selector.h" />
+    <ClInclude Include="..\..\include\shield.h" />
+    <ClInclude Include="..\..\include\sign.h" />
     <ClInclude Include="..\..\include\stone.h" />
     <ClInclude Include="projectile.h" />
   </ItemGroup>

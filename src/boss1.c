@@ -97,7 +97,7 @@ void boss1_free(Entity *self)
 		slog("nothing to free");
 		return NULL;
 	}
-	slog("freed");
+	
 	gf2d_sprite_delete(self->sprite);
 	
 	gf2d_sprite_free(self);
