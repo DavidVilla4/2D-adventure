@@ -15,7 +15,7 @@ Entity *heart_new(Vector2D psoition)
 void heart_update(Entity *self, Entity *player)
 {
 	
-	gf2d_rect_draw(self->heart, gfc_color(1, 1, 0, 1));
+	//gf2d_rect_draw(self->heart, gfc_color(1, 1, 0, 1));
 	gf2d_sprite_draw_image(self->heart_sprite, vector2d(self->heart.x, self->heart.y));
 	//slog("pickup %d", player->pickup);
 	if (player->pickup==true)

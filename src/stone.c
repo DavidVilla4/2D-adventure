@@ -19,8 +19,8 @@ Entity *stone_new(Vector2D position)
 
 void *stone_update(Entity *self, Entity *player)
 {
-	gf2d_rect_draw(self->box, gfc_color(1, 0, 0, 1), vector2d(0,0));
-	gf2d_rect_draw(self->hitbox, gfc_color(1, 0, 0, 1), vector2d(0, 0));
+	//gf2d_rect_draw(self->box, gfc_color(1, 0, 0, 1), vector2d(0,0));
+	//gf2d_rect_draw(self->hitbox, gfc_color(1, 0, 0, 1), vector2d(0, 0));
 
 	if (collide_rect(self->box, player->box))
 	{

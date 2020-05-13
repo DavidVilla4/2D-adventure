@@ -39,7 +39,7 @@ void boss1_update(Entity *self, Entity *player)
 {
 	const Uint8 *keys;
 	keys = SDL_GetKeyboardState(NULL);
-	gf2d_rect_draw(self->box, gfc_color(1, 0, 0, 1));
+	//gf2d_rect_draw(self->box, gfc_color(1, 0, 0, 1));
 	gf2d_rect_draw(self->hitbox, gfc_color(0, 0, 1, 1));
 	gf2d_rect_draw(self->lava, gfc_color(0, 0, 1, 1));
 	gf2d_rect_draw(self->bounce, gfc_color(0,0,1,1));

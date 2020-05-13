@@ -19,6 +19,7 @@ typedef struct Entity_S
 	Rect health1;
 	Rect enemy;
 	Rect heart;
+	Circle block;
 	Shape *testbox;
 	Rect hitbox;
 	Uint8 _inuse;

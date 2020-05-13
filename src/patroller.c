@@ -29,11 +29,11 @@ Entity *patroller_new(Vector2D position)
 	return self;
 }
 
-void patroller_update(Entity *self)
+void patroller_update(Entity *self, Entity *player)
 {
 	int distance;
 	timer += 0.1f;
-	gf2d_rect_draw(self->enemy, gfc_color(0, 0, 1, 1));
+	//gf2d_rect_draw(self->enemy, gfc_color(0, 0, 1, 1));
 	gf2d_sprite_draw_image(self->fire_sprite, vector2d(self->enemy.x, self->enemy.y-15));
 	frameIncr += 0.1f;
 	if (frameIncr > 4.0f)
@@ -55,6 +55,11 @@ void patroller_update(Entity *self)
 	}
 	self->frame = (int)frameIncr;
 	entity_update(self);
+
+	if (collide_rect(player->sword, self->enemy))
+	{
+		patroller_free(self);
+	}
 	
 	self->frame = self->frame + 0.1;
 	vector2d_add(self->position, self->position, self->velocity);
@@ -64,9 +69,15 @@ void patroller_update(Entity *self)
 
 void patroller_free(Entity *self)
 {
-	if (!self)return;
+	if (!self)
+	{
+		slog("nothing to free");
+		return NULL;
+	}
+
+	gf2d_sprite_delete(self->fire_sprite);
+
 	gf2d_sprite_free(self);
-	free(self);
 }
 
 void patroller_draw(Entity *self)

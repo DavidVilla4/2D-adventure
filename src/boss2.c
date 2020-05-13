@@ -15,7 +15,7 @@ Entity *boss2_new(Vector2D poisiton)
 	}
 	
 	self->sprite = gf2d_sprite_load_all("images/terrex.png", 95,80,2);
-	//gf2d_sprite_draw_image(self->sprite, vector2d(350, 400));
+	self->fire_sprite = gf2d_sprite_load_all("images/portal.png",80,80,1);
 	self->position.x = 700;
 	self->position.y = 300;
 	self->box = gf2d_rect(self->position.x, self->position.y, 30, 50);
@@ -29,8 +29,9 @@ Entity *boss2_new(Vector2D poisiton)
 
 void boss2_update(Entity *self, Entity *player)
 {
-	gf2d_rect_draw(self->box, gfc_color(1, 0, 0, 1));
-	gf2d_sprite_draw_image(self->sprite, vector2d(self->box.x, self->box.y));
+	//gf2d_rect_draw(self->box, gfc_color(1, 0, 0, 1));
+	gf2d_sprite_draw_image(self->sprite, vector2d(self->box.x+30, self->box.y));
+	gf2d_sprite_draw_image(self->fire_sprite, vector2d(700, 300));
 
 	
 
@@ -48,20 +49,20 @@ void boss2_update(Entity *self, Entity *player)
 	if (player->position.x+30 - self->box.x<0)//less that if creature is to the right of player
 	{
 		//self->velocity.x -= .03;
-		self->box.x -= .1;
+		self->box.x -= .7;
 	}
 	else
 	{
 		//self->velocity.x += .03;
-		self->box.x += .1;
+		self->box.x += .7;
 	}
 	if (player->position.y + 50 - self->box.y < 0)
 	{
-		self->box.y -= .1;
+		self->box.y -= .7;
 	}
 	else
 	{
-		self->box.y += .1;
+		self->box.y += .7;
 	}
 }
 

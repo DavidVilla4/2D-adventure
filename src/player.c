@@ -12,7 +12,7 @@
 #include "projectile.h"
 #include "health_bar.h"
 #include "heart.h"
-
+#include "shield.h"
 
 
 
@@ -39,9 +39,14 @@ Entity *new_player(Vector2D position)
 		128,
 		128,
 		16);
-	//self->water_sprite = gf2d_sprite_load_all("images/swords/sword_right_new.png",64,64,1);
+	self->water_sprite = gf2d_sprite_load_all("images/weapons/sword_left.png",64,64,1);
+	self->fire_sprite = gf2d_sprite_load_image("images/weapons/sword_right.png");
+	self->rock_sprite = gf2d_sprite_load_image("images/weapons/sword_shiny.png");
+	self->new_sprite = gf2d_sprite_load_image("images/weapons/sword_down.png");
+
 
 	self->box = gf2d_rect(self->position.x, self->position.y, 50, 25);
+
 
 	vector2d(self->velocity.x, self->velocity.y);
 
@@ -64,11 +69,14 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 {
 
 	vector2d_add(self->position, self->position, self->velocity);
-	gf2d_rect_draw(self->box, gfc_color(0, 10, 0, 1), vector2d(0, 0));
+	//gf2d_rect_draw(self->box, gfc_color(0, 10, 0, 1), vector2d(0, 0));
 	const Uint8 *keys;
 	keys = SDL_GetKeyboardState(NULL);
-
-
+	
+	
+	
+	
+	
 	if (keys[SDL_SCANCODE_A])
 	{
 
@@ -82,7 +90,8 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 
 			self->velocity = vector2d(0, 0);
 			self->sword = gf2d_rect(self->position.x - 30, self->position.y + 50, 60, 20);
-			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));
+			gf2d_sprite_draw_image(self->water_sprite,vector2d(self->sword.x, self->sword.y));
+			//gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));
 
 		}
 
@@ -106,8 +115,8 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 
 			self->velocity = vector2d(0, 0);
 			self->sword = gf2d_rect(self->position.x + 80, self->position.y + 50, 60, 20);
-			//gf2d_sprite_draw_image(self->water_sprite, vector2d(self->sword.x,self->sword.y-40));
-			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));
+			gf2d_sprite_draw_image(self->fire_sprite, vector2d(self->sword.x,self->sword.y));
+			//gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));
 		}
 	}
 	else if (keys[SDL_SCANCODE_W])
@@ -122,7 +131,8 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 		{
 			self->velocity = vector2d(0, 0);
 			self->sword = gf2d_rect(self->position.x + 45, self->position.y - 10, 20, 60);
-			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));
+			gf2d_sprite_draw_image(self->rock_sprite, vector2d(self->sword.x, self->sword.y));
+			//gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1));
 		}
 
 
@@ -145,7 +155,8 @@ void player_update(Entity *self, Level *level, Entity *rock, Entity *water)
 		{
 			self->velocity = vector2d(0, 0);
 			self->sword = gf2d_rect(self->position.x + 45, self->position.y + 75, 20, 60);
-			gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1), vector2d(50, 75));
+			gf2d_sprite_draw_image(self->new_sprite, vector2d(self->sword.x, self->sword.y));
+			//gf2d_rect_draw(self->sword, gfc_color(0, 0, 10, 1), vector2d(50, 75));
 
 		}
 	}
